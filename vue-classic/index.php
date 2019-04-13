@@ -17,6 +17,6 @@
 get_header();
 ?>
 
-<main>Vue Classic</main>
+<main class="font-mono">Vue Classic</main>
 
 <?php get_footer();?>
