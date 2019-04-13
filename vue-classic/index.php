@@ -17,6 +17,6 @@
 get_header();
 ?>
 
-<main class="font-mono">Vue Classic</main>
+<main id="app" class="font-mono">{{ message }}</main>
 
 <?php get_footer();?>
