@@ -17,6 +17,6 @@
 get_header();
 ?>
 
-<main id="app" class="font-mono">{{ message }}</main>
+<main id="app" class="container mx-auto py-10">{{ message }}</main>
 
 <?php get_footer();?>

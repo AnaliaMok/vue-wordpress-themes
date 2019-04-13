@@ -18,7 +18,7 @@ mix
 mix.js('assets/vue/main.js', 'dist').extract(['vue']);
 
 // Switch with your proxy.
-mix.browserSync('https://theme-dev.lndo.site');
+// mix.browserSync('https://localhost:32777');
 
 // Full API
 // mix.browserSync('my-site.test');

@@ -17,3 +17,19 @@ function vueclassic_styles() {
     wp_enqueue_script('vueclassic-scripts', $base_url . '/dist/main.js', array(), date("H:i:s"), true);
 }
 add_action('wp_enqueue_scripts', 'vueclassic_styles');
+
+if (function_exists('add_theme_support')) {
+    // Add Menu Support
+    add_theme_support('menus');
+
+    // Add Thumbnail Theme Support
+    add_theme_support('post-thumbnails');
+}
+
+function register_vueclassic_menu() {
+    register_nav_menus(array(
+        'header-menu' => __('Header Menu', 'vueclassic'), // Main Navigation.
+        'footer-menu' => __('Footer Menu', 'vueclassic'), // Footer Navigation.
+    ));
+}
+add_action('init', 'register_vueclassic_menu');

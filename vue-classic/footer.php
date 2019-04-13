@@ -1,5 +1,5 @@
-			<footer class="footer" role="contentinfo">
-				<p class="copyright">
+			<footer class="footer container mx-auto text-center" role="contentinfo">
+				<p class="copyright font-sans font-medium">
 					&copy; <?php echo date('Y'); ?> Copyright <?php bloginfo('name');?>
 				</p>
 				<!-- /copyright -->
