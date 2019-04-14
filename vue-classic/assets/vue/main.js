@@ -1,9 +1,23 @@
 import Vue from 'vue';
+import DefaultLayout from './layouts/DefaultLayout.vue';
+import App from './App.vue';
+
+Vue.component('Layout', DefaultLayout);
+
+let app = document.getElementById('app');
 
 new Vue({
-  el: '#app',
   data: {
-    message: 'Hello Vue!',
-    blah: 'Blarg'
+    component: '',
+    props: {}
+  },
+  render: h => {
+    console.log(app.dataset.component);
+    return h(App, {
+      props: {
+        component: app.dataset.component || 'Page',
+        props: JSON.parse(app.dataset.props)
+      }
+    });
   }
-});
+}).$mount('#app');

@@ -6,5 +6,9 @@
  */
 
 get_header();
-// TODO.
-get_footer();
+?>
+
+<!-- TODO: Query Page and pass to component. -->
+<div id="app" data-component="Page" data-props="{}"></div>
+
+<?php get_footer(); ?>

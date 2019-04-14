@@ -17,6 +17,6 @@
 get_header();
 ?>
 
-<main id="app" class="container mx-auto py-10">{{ message }}</main>
+<main id="app" class="container mx-auto py-10">Index Page</main>
 
 <?php get_footer();?>
