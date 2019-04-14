@@ -1,13 +1,14 @@
 <template>
-	<h2>{{ component }}</h2>
+	<!-- <component :is="component"></component> -->
+	<!-- <page-component></page-component> -->
 </template>
 
+
 <script>
-// TODO: Dynamic import beforeCreate
 export default {
-  init() {
-    import(`@/templates/${this.component}`);
-  },
+  // init() {
+  //   import(`@/templates/${this.component}`);
+  // },
   props: {
     component: {
       type: String,
@@ -17,7 +18,22 @@ export default {
       type: Object,
       required: true
     }
+  },
+  components: {
+    // "page-component": () => import(`assets/vue/templates/${this.component}`)
+  },
+  mounted() {
+    console.log(this.component);
   }
+  // render: h => {
+  //   console.log(this.props);
+  //   // FIXME.
+  //   return h(this.component, {
+  //     props: {
+  //       ...this.props
+  //     }
+  //   });
+  // }
 };
 </script>
 
