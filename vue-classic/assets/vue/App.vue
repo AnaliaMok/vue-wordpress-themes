@@ -22,9 +22,8 @@ export default {
   },
   render: function(h, context) {
     let { component, props, components } = context.props;
-
     return h(components[component], {
-      props: props,
+      props: { ...props },
     });
   },
 };

@@ -17,11 +17,15 @@ function vueclassic_styles() {
 add_action('wp_enqueue_scripts', 'vueclassic_styles');
 
 if (function_exists('add_theme_support')) {
-    // Add Menu Support
+    // Add Menu Support.
     add_theme_support('menus');
 
-    // Add Thumbnail Theme Support
+    // Add Thumbnail Theme Support.
     add_theme_support('post-thumbnails');
+
+    // Custom Thumbnail Sizes.
+    add_image_size( 'banner', 1280, 720, true );
+    add_image_size( 'blog-post', 768, 512, true );
 }
 
 function register_vueclassic_menu() {

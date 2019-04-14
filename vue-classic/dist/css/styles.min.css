@@ -5107,6 +5107,7 @@ nav li a {
   transition: all .2s;
 }
 
+nav li.current-menu-item a,
 nav li a:hover {
   background-color: #3490dc;
   color: #f1f5f8;

@@ -7,6 +7,8 @@ nav li a{
 	transition: all 0.2s;
 }
 
+
+nav li.current-menu-item a,
 nav li a:hover {
 	@apply bg-blue text-grey-lighter;
 }
