@@ -1,1 +1,0 @@
-Place all single file Vue components related to a specific theme template here.

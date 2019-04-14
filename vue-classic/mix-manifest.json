@@ -1,7 +1,7 @@
 {
-    "/dist/main.js": "/dist/main.js",
+    "/dist//dist/main.js": "/dist//dist/main.js",
     "/dist/styles.css": "/dist/styles.css",
     "/dist/manifest.js": "/dist/manifest.js",
-    "/dist/vendor.js": "/dist/vendor.js",
+    "/dist//dist/vendor.js": "/dist//dist/vendor.js",
     "/dist/styles.min.css": "/dist/styles.min.css"
 }

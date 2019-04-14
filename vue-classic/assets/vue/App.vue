@@ -5,6 +5,9 @@
 <script>
 // TODO: Dynamic import beforeCreate
 export default {
+  init() {
+    import(`@/templates/${this.component}`);
+  },
   props: {
     component: {
       type: String,

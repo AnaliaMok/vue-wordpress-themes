@@ -1,5 +1,6 @@
 let mix = require('laravel-mix');
 let tailwindcss = require('tailwindcss');
+let path = require('path');
 
 /*
  |--------------------------------------------------------------------------
@@ -15,7 +16,19 @@ mix
   .minify('dist/styles.css');
 
 // Javascript compilation.
-mix.js('assets/vue/main.js', 'dist').extract(['vue']);
+mix
+  .js('assets/vue/main.js', 'dist')
+  .webpackConfig({
+    output: { chunkFilename: '[name].js' },
+    resolve: {
+      extensions: ['.vue'],
+      alias: {
+        vue$: 'vue/dist/vue.runtime.js',
+        '@': path.resolve('assets/vue')
+      }
+    }
+  })
+  .extract(['vue']);
 
 // Switch with your proxy.
 // mix.browserSync('https://localhost:32777');

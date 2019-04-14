@@ -12,9 +12,9 @@ function vueclassic_styles() {
     wp_enqueue_style('vueclassic-styles', $base_url . '/dist/styles.min.css', array(), date("H:i:s"));
 
     // Enqueue all scripts in this specific order.
-    wp_enqueue_script('vueclassic-manifest-script', $base_url . '/dist/manifest.js', array(), '', true);
-    wp_enqueue_script('vueclassic-vendor-scripts', $base_url . '/dist/vendor.js', array(), '', true);
-    wp_enqueue_script('vueclassic-scripts', $base_url . '/dist/main.js', array(), '', true);
+    wp_enqueue_script('vueclassic-manifest-script', $base_url . '/dist/manifest.js', array(), date("H:i:s"), true);
+    wp_enqueue_script('vueclassic-vendor-scripts', $base_url . '/dist/vendor.js', array(), date("H:i:s"), true);
+    wp_enqueue_script('vueclassic-scripts', $base_url . '/dist/main.js', array(), date("H:i:s"), true);
 }
 add_action('wp_enqueue_scripts', 'vueclassic_styles');
 
