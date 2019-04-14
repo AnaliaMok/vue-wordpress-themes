@@ -9,14 +9,14 @@ let app = document.getElementById('app');
 new Vue({
   data: {
     component: '',
-    props: {}
+    props: {},
   },
   render: h => {
     return h(App, {
       props: {
         component: app.dataset.component || 'Page',
-        props: JSON.parse(app.dataset.props)
-      }
+        props: JSON.parse(app.dataset.props),
+      },
     });
-  }
+  },
 }).$mount('#app');

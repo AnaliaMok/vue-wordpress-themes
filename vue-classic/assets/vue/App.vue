@@ -1,41 +1,31 @@
-<template>
-	<!-- <component :is="component"></component> -->
-	<!-- <page-component></page-component> -->
-</template>
-
-
 <script>
+import Page from '@/templates/Page.vue';
+
 export default {
-  // init() {
-  //   import(`@/templates/${this.component}`);
-  // },
+  name: 'App',
+  functional: true,
   props: {
     component: {
       type: String,
-      required: true
+      required: true,
     },
-    props: {
+    props: Object,
+    // Future TODO: Find cleaner workaround for component registration.
+    components: {
       type: Object,
-      required: true
-    }
+      default() {
+        return {
+          Page,
+        };
+      },
+    },
   },
-  components: {
-    // "page-component": () => import(`assets/vue/templates/${this.component}`)
+  render: function(h, context) {
+    let { component, props, components } = context.props;
+
+    return h(components[component], {
+      props: props,
+    });
   },
-  mounted() {
-    console.log(this.component);
-  }
-  // render: h => {
-  //   console.log(this.props);
-  //   // FIXME.
-  //   return h(this.component, {
-  //     props: {
-  //       ...this.props
-  //     }
-  //   });
-  // }
 };
 </script>
-
-<style>
-</style>
