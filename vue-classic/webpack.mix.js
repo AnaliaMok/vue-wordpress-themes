@@ -19,7 +19,7 @@ mix
 mix
   .js('assets/vue/main.js', 'dist')
   .webpackConfig({
-    output: { chunkFilename: '[name].js' },
+    output: { path: path.resolve(__dirname, 'dist/bundle') }, // Throw away.
     resolve: {
       extensions: ['.vue'],
       alias: {

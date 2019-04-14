@@ -12,7 +12,6 @@ new Vue({
     props: {}
   },
   render: h => {
-    console.log(app.dataset.component);
     return h(App, {
       props: {
         component: app.dataset.component || 'Page',

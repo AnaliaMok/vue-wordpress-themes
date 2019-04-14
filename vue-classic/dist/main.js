@@ -157,7 +157,6 @@ new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
     props: {}
   },
   render: function render(h) {
-    console.log(app.dataset.component);
     return h(_App_vue__WEBPACK_IMPORTED_MODULE_2__["default"], {
       props: {
         component: app.dataset.component || 'Page',
