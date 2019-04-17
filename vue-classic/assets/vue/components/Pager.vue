@@ -1,6 +1,8 @@
 <template>
 	<section>
-		<article v-for="post in posts" :key="post.id">{{ post.title.rendered }}</article>
+		<template v-for="post in posts">
+			<component :is="pagedComponent" :item="post" :key="post.id"></component>
+		</template>
 		<strong v-if="posts.length === 0">No posts found</strong>
 		<div class="pager">
 			<ul>
@@ -37,6 +39,14 @@ export default {
   watch: {
     currentPage: function(oldValue, newValue) {
       this.getPosts();
+    },
+  },
+  computed: {
+    pagedComponent() {
+      if (this.resourceType === 'posts') {
+        return 'PostPreview';
+      }
+      // return 'PostPreview';
     },
   },
   methods: {

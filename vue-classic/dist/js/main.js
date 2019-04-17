@@ -602,6 +602,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -626,6 +628,14 @@ __webpack_require__.r(__webpack_exports__);
   watch: {
     currentPage: function currentPage(oldValue, newValue) {
       this.getPosts();
+    }
+  },
+  computed: {
+    pagedComponent: function pagedComponent() {
+      if (this.resourceType === 'posts') {
+        return 'PostPreview';
+      } // return 'PostPreview';
+
     }
   },
   methods: {
@@ -667,7 +677,45 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    item: {
+      type: Object,
+      required: true
+    }
+  },
+  data: function data() {
+    return {
+      featuredMedia: {
+        url: 'https://via.placeholder.com/768x512.png',
+        alt: 'Blog Thumbnail'
+      }
+    };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    if (this.item.featured_media === 0) {
+      return;
+    }
+
+    var resourceUrl = "".concat(window.location.origin, "/wp-json/wp/v2/media?include[]=").concat(this.item.featured_media, "&per_page=1");
+    fetch(resourceUrl).then(function (res) {
+      return res.json();
+    }).then(function (data) {
+      if (data) {
+        _this.featuredMedia = {
+          url: data[0].media_details.sizes['blog-post'].source_url,
+          alt: data[0].alt_text || _this.item.title.rendered
+        };
+      }
+    });
+  }
+});
 
 /***/ }),
 
@@ -1892,9 +1940,13 @@ var render = function() {
     "section",
     [
       _vm._l(_vm.posts, function(post) {
-        return _c("article", { key: post.id }, [
-          _vm._v(_vm._s(post.title.rendered))
-        ])
+        return [
+          _c(_vm.pagedComponent, {
+            key: post.id,
+            tag: "component",
+            attrs: { item: post }
+          })
+        ]
       }),
       _vm._v(" "),
       _vm.posts.length === 0
@@ -1938,7 +1990,20 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("article", [_vm._v("TODO")])
+  return _c("article", {}, [
+    _c("img", {
+      attrs: { src: _vm.featuredMedia.url, alt: _vm.featuredMedia.alt }
+    }),
+    _vm._v(" "),
+    _c("h2", { staticClass: "font-display text-2xl" }, [
+      _vm._v(_vm._s(_vm.item.title.rendered))
+    ]),
+    _vm._v(" "),
+    _c("div", {
+      staticClass: "font-sans leading-normal",
+      domProps: { innerHTML: _vm._s(_vm.item.excerpt.rendered) }
+    })
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
