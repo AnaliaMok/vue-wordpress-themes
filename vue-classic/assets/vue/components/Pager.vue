@@ -1,7 +1,7 @@
 <template>
 	<section>
-		<strong>Current Page: {{ currentPage }}; Total Pages: {{ totalPages }}</strong>
 		<article v-for="post in posts" :key="post.id">{{ post.title.rendered }}</article>
+		<strong v-if="posts.length === 0">No posts found</strong>
 		<div class="pager">
 			<ul>
 				<li><button @click="prevPage">Prev</button></li>
@@ -45,7 +45,7 @@ export default {
         this.resourceType
       }?per_page=9&page=${this.currentPage}`;
 
-      fetch(resourceUrl)
+      fetch(resourceUrl, { credentials: 'same-origin' })
         .then(res => {
           this.totalPages = res.headers.get('X-WP-TotalPages');
           return res.json();

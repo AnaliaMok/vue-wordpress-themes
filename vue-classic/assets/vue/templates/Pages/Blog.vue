@@ -1,8 +1,8 @@
 <template>
 	<Layout>
-		<section>
+		<section class="mb-8">
 			<h1 class="mb-4 text-grey-darkest text-center font-display">Welcome to Our Blog!</h1>
-			<img :src="banner.url" :alt="banner.alt">
+			<img :src="banner.url" :alt="banner.alt" class="block w-4/5 mx-auto">
 		</section>
 		<Pager resourceType="posts"/>
 	</Layout>

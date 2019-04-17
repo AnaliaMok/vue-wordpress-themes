@@ -633,7 +633,9 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       var resourceUrl = "".concat(window.location.origin, "/wp-json/wp/v2/").concat(this.resourceType, "?per_page=9&page=").concat(this.currentPage);
-      fetch(resourceUrl).then(function (res) {
+      fetch(resourceUrl, {
+        credentials: 'same-origin'
+      }).then(function (res) {
         _this.totalPages = res.headers.get('X-WP-TotalPages');
         return res.json();
       }).then(function (data) {
@@ -1889,20 +1891,15 @@ var render = function() {
   return _c(
     "section",
     [
-      _c("strong", [
-        _vm._v(
-          "Current Page: " +
-            _vm._s(_vm.currentPage) +
-            "; Total Pages: " +
-            _vm._s(_vm.totalPages)
-        )
-      ]),
-      _vm._v(" "),
       _vm._l(_vm.posts, function(post) {
         return _c("article", { key: post.id }, [
           _vm._v(_vm._s(post.title.rendered))
         ])
       }),
+      _vm._v(" "),
+      _vm.posts.length === 0
+        ? _c("strong", [_vm._v("No posts found")])
+        : _vm._e(),
       _vm._v(" "),
       _c("div", { staticClass: "pager" }, [
         _c("ul", [
@@ -1997,14 +1994,17 @@ var render = function() {
   return _c(
     "Layout",
     [
-      _c("section", [
+      _c("section", { staticClass: "mb-8" }, [
         _c(
           "h1",
           { staticClass: "mb-4 text-grey-darkest text-center font-display" },
           [_vm._v("Welcome to Our Blog!")]
         ),
         _vm._v(" "),
-        _c("img", { attrs: { src: _vm.banner.url, alt: _vm.banner.alt } })
+        _c("img", {
+          staticClass: "block w-4/5 mx-auto",
+          attrs: { src: _vm.banner.url, alt: _vm.banner.alt }
+        })
       ]),
       _vm._v(" "),
       _c("Pager", { attrs: { resourceType: "posts" } })
