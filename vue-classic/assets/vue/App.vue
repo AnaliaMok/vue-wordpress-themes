@@ -1,5 +1,6 @@
 <script>
-import Page from '@/templates/Page.vue';
+import Page from '@/templates/Pages/Page.vue';
+import Blog from '@/templates/Pages/Blog.vue';
 
 export default {
   name: 'App',
@@ -16,6 +17,7 @@ export default {
       default() {
         return {
           Page,
+          Blog,
         };
       },
     },
