@@ -1,11 +1,13 @@
 # Vue Implemented WordPress Themes
+__[Heavily In Development]__
+This repo contains simple boilerplate themes for using Vue in WordPress. To download, please use the appropriate release (When made available)
 
-This repo contains simple boilerplate themes for using Vue in WordPress.
+* `vue-classic` - for WordPress projects still using the Classic Editor. Plain Javascript variant.
+* More variants to come
 
-* `vue-classic` is for WordPress projects still using the Classic Editor
-* `vue-gutenberg` is for projects utilizing the Gutenberg Editor.
-
-## Technologies (Both Themes)
+## Technologies
 * Vue v2.6.10
-* Webpack v4.28
+* Laravel Mix (soon to be Webpack)
 * Tailwind v0.7.4
+
+Installation instructions inside each theme's readme
