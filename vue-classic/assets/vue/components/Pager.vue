@@ -3,9 +3,9 @@
     <template v-for="post in posts">
       <component :is="pagedComponent" :item="post" :key="post.id"></component>
     </template>
-		<strong v-if="posts.length === 0">No posts found</strong>
-		<div class="pager">
-			<ul>
+		<h1 v-if="posts.length === 0" class="block w-4/5 mx-auto font-display text-center mb-8">No posts found</h1>
+		<div class="pager block w-4/5 mx-auto">
+			<ul class="list-reset flex text-center justify-center">
 				<li><button @click="prevPage">Prev</button></li>
 				<li><button @click="nextPage">Next</button></li>
 			</ul>

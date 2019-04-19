@@ -32,7 +32,7 @@ export default {
   data() {
     return {
       featuredMedia: {
-        url: 'https://via.placeholder.com/768x512.png',
+        url: 'https://via.placeholder.com/768x512.png?text=Loading...',
         alt: 'Blog Thumbnail',
       },
     };
