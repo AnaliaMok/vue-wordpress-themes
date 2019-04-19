@@ -1,8 +1,8 @@
 <template>
 	<section>
-		<template v-for="post in posts">
-			<component :is="pagedComponent" :item="post" :key="post.id"></component>
-		</template>
+    <template v-for="post in posts">
+      <component :is="pagedComponent" :item="post" :key="post.id"></component>
+    </template>
 		<strong v-if="posts.length === 0">No posts found</strong>
 		<div class="pager">
 			<ul>

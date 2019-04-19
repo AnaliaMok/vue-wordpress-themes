@@ -35,3 +35,24 @@ function register_vueclassic_menu() {
     ));
 }
 add_action('init', 'register_vueclassic_menu');
+
+// Shrink excerpt length.
+apply_filters( 'excerpt_length', 25 );
+
+/**
+ * Filters REST response for default post type.
+ *
+ * @param WP_REST_Response $data - The response object.
+ * @param WP_post $post - Post object.
+ * @param WP_REST_Request $request - Request object.
+ * @return void
+ */
+function vueclassic_prepare_post ( $data, $post, $request ) {
+
+    // Trim excerpt.
+    $excerpt = wp_trim_words( $data->data['excerpt']['rendered'] );
+    $data->data['excerpt']['rendered'] = wp_json_encode( $excerpt );
+
+    return $data;
+}
+add_filter( 'rest_prepare_post', 'vueclassic_prepare_post', 10, 3 );
