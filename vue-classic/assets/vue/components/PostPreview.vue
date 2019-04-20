@@ -32,7 +32,9 @@ export default {
   data() {
     return {
       featuredMedia: {
-        url: 'https://via.placeholder.com/768x512.png?text=Loading...',
+        url:
+          window.location.origin +
+          '/wp-content/themes/vue-classic/assets/img/placeholder.png', //'https://via.placeholder.com/768x512.png?text=Loading...',
         alt: 'Blog Thumbnail',
       },
     };
@@ -53,6 +55,11 @@ export default {
           this.featuredMedia = {
             url: data[0].media_details.sizes['blog-post'].source_url,
             alt: data[0].alt_text || this.item.title.rendered,
+          };
+        } else {
+          this.featuredMedia = {
+            url: 'https://via.placeholder.com/768x512.png?text=No Image',
+            alt: 'No Image',
           };
         }
       });
