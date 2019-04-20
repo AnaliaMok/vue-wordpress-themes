@@ -9,30 +9,24 @@ get_header();
 ?>
 
 <?php
-$page = array();
+$page    = array();
+$curauth = ( isset( $_GET['author_name'] ) ) ? get_user_by( 'slug', $author_name ) : get_userdata( intval( $author ) );
+$author_description = $curauth->description;
+$author_name = $curauth->display_name;
 
-if ( have_posts() ) {
-	the_post();
-
-	$post_id = get_the_ID();
-
-	if ( ! empty( get_the_post_thumbnail( $post_id, 'banner' ) ) ) {
-		$thumbnail = array(
-			'alt' => get_post_meta( get_post_thumbnail_id(), '_wp_attachment_image_alt', true ),
-			'url' => get_the_post_thumbnail_url( $post_id, 'banner' ),
-		);
-	}
-
-	$page = array(
-		'title'   => get_the_title(),
-		'content' => apply_filters( 'the_content', get_the_content() ),
-		'thumbnail' => $thumbnail,
-	);
+if ( ! empty( $curauth->first_name ) && ! empty( $curauth->last_name ) ) {
+	$author_name = $curauth->first_name . ' ' . $curauth->last_name;
 }
+
+$page = array(
+	'title'   => $author_name,
+	'content' => $author_description,
+	'params'  => 'author=' . $curauth->ID,
+);
 
 $data = wp_json_encode( $page );
 ?>
 
-<div id="app" data-component="Blog" data-props='<?php print_r( $data ); ?>'></div>
+<div id="app" data-component="Listing" data-props='<?php print_r( $data ); ?>'></div>
 
 <?php get_footer(); ?>

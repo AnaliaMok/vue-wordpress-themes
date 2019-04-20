@@ -3,7 +3,7 @@
     <template v-for="post in posts">
       <component :is="pagedComponent" :item="post" :key="post.id"></component>
     </template>
-		<h1 v-if="posts.length === 0" class="block w-4/5 mx-auto font-display text-center mb-8">{{ noPostsMsg }}</h1>
+		<h1 v-show="posts.length === 0" class="block w-4/5 mx-auto font-display text-center mb-8">{{ noPostsMsg }}</h1>
 		<div class="pager block w-4/5 mx-auto">
 			<ul class="list-reset flex text-center justify-center" v-if="totalPages > 1">
 				<li><button @click="getPage(currentPage - 1)" class="px-4 py-2">Prev</button></li>
@@ -34,6 +34,7 @@ export default {
       type: String,
       default: 'posts',
     },
+    params: String,
   },
   data() {
     return {
@@ -82,9 +83,13 @@ export default {
   },
   methods: {
     getPosts: function() {
-      const resourceUrl = `${window.location.origin}/wp-json/wp/v2/${
+      let resourceUrl = `${window.location.origin}/wp-json/wp/v2/${
         this.resourceType
       }?per_page=9&page=${this.currentPage}`;
+
+      if (this.params) {
+        resourceUrl += `&${this.params}`;
+      }
 
       // Reset while loading.
       this.noPostsMsg = 'Loading...';

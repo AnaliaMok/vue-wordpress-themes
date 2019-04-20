@@ -2,6 +2,7 @@
 // Page Templates
 import Page from '@/templates/Pages/Page.vue';
 import Blog from '@/templates/Pages/Blog.vue';
+import Listing from '@/templates/Pages/Listing.vue';
 
 // Single Templates.
 import Post from '@/templates/Singles/Post.vue';
@@ -23,6 +24,7 @@ export default {
           Page,
           Blog,
           Post,
+          Listing,
         };
       },
     },

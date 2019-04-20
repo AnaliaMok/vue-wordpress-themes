@@ -52,12 +52,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.blog-title {
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
-}
-</style>

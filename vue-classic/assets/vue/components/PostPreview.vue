@@ -52,15 +52,20 @@ export default {
       .then(res => res.json())
       .then(data => {
         if (data) {
+          let url = '';
+
+          if (data[0].media_details.sizes['blog-post']) {
+            url = data[0].media_details.sizes['blog-post'].source_url;
+          } else {
+            url = data[0].media_details.sizes['medium_large'].source_url;
+          }
+
           this.featuredMedia = {
-            url: data[0].media_details.sizes['blog-post'].source_url,
+            url,
             alt: data[0].alt_text || this.item.title.rendered,
           };
         } else {
-          this.featuredMedia = {
-            url: 'https://via.placeholder.com/768x512.png?text=No Image',
-            alt: 'No Image',
-          };
+          this.featuredMedia['alt'] = this.item.title.rendered;
         }
       });
   },
@@ -71,6 +76,3 @@ export default {
   },
 };
 </script>
-
-<style>
-</style>
