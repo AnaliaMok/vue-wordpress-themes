@@ -1161,9 +1161,11 @@ __webpack_require__.r(__webpack_exports__);
   computed: {
     featuredMedia: function featuredMedia() {
       var defaultUrl = window.location.origin + '/wp-content/themes/vue-classic/assets/img/placeholder.png';
+      var url = this.thumbnail ? this.thumbnail.url : '';
+      var alt = this.thumbnail ? this.thumbnail.alt : this.title;
       return {
-        url: this.thumbnail.url || defaultUrl,
-        alt: this.thumbnail.alt || 'Blog Thumbnail'
+        url: url || defaultUrl,
+        alt: alt
       };
     },
     bannerCaption: function bannerCaption() {
@@ -2574,7 +2576,7 @@ var render = function() {
         "div",
         { staticClass: "post__content p-8 flex-grow md:w-4/5 lg:w-3/5" },
         [
-          _c("h2", { staticClass: "font-display text-2xl mb-2" }, [
+          _c("h2", { staticClass: "font-display text-2xl mt-0 mb-2" }, [
             _c(
               "a",
               {
@@ -2591,7 +2593,7 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
-          _c("h3", { staticClass: "font-sans text-base mb-2" }, [
+          _c("h3", { staticClass: "font-sans text-base mt-0 mb-2" }, [
             _vm._v(_vm._s(_vm.formattedDate))
           ]),
           _vm._v(" "),

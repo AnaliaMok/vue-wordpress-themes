@@ -4,12 +4,12 @@
       <img :src="featuredMedia.url" :alt="featuredMedia.alt" class="max-w-full">
     </figure>
     <div class="post__content p-8 flex-grow md:w-4/5 lg:w-3/5">
-      <h2 class="font-display text-2xl mb-2">
+      <h2 class="font-display text-2xl mt-0 mb-2">
         <a :href="item.link || '#'" class="no-underline text-indigo-darker hover:underline">
           {{ item.title.rendered }}
         </a>
       </h2>
-      <h3 class="font-sans text-base mb-2">{{ formattedDate }}</h3>
+      <h3 class="font-sans text-base mt-0 mb-2">{{ formattedDate }}</h3>
       <div v-html="item.excerpt.rendered" class="font-sans leading-normal"></div>
       <a :href="item.link || '#'" class="inline-block no-underline font-sans text-indigo-dark hover:underline mt-4">
         Read More

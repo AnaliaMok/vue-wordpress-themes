@@ -33,9 +33,12 @@ export default {
         window.location.origin +
         '/wp-content/themes/vue-classic/assets/img/placeholder.png';
 
+      let url = this.thumbnail ? this.thumbnail.url : '';
+      let alt = this.thumbnail ? this.thumbnail.alt : this.title;
+
       return {
-        url: this.thumbnail.url || defaultUrl,
-        alt: this.thumbnail.alt || 'Blog Thumbnail',
+        url: url || defaultUrl,
+        alt,
       };
     },
     bannerCaption() {
