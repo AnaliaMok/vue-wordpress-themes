@@ -1056,6 +1056,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mixins: [_mixins_DateMixin_js__WEBPACK_IMPORTED_MODULE_0__["DateMixin"]],
@@ -1070,41 +1074,65 @@ __webpack_require__.r(__webpack_exports__);
       featuredMedia: {
         url: window.location.origin + '/wp-content/themes/vue-classic/assets/img/placeholder.png',
         alt: 'Blog Thumbnail'
-      }
+      },
+      category: {}
     };
   },
   mounted: function mounted() {
-    var _this = this;
-
-    if (this.item.featured_media === 0) {
-      return;
-    }
-
-    var resourceUrl = "".concat(window.location.origin, "/wp-json/wp/v2/media?include[]=").concat(this.item.featured_media, "&per_page=1");
-    fetch(resourceUrl).then(function (res) {
-      return res.json();
-    }).then(function (data) {
-      if (data) {
-        var url = '';
-
-        if (data[0].media_details.sizes['blog-post']) {
-          url = data[0].media_details.sizes['blog-post'].source_url;
-        } else {
-          url = data[0].media_details.sizes['medium_large'].source_url;
-        }
-
-        _this.featuredMedia = {
-          url: url,
-          alt: data[0].alt_text || _this.item.title.rendered
-        };
-      } else {
-        _this.featuredMedia['alt'] = _this.item.title.rendered;
-      }
-    });
+    this.getFeaturedMedia();
+    this.getCategory();
   },
   computed: {
     formattedDate: function formattedDate() {
       return this.getFormattedDate(this.item.date);
+    }
+  },
+  methods: {
+    getFeaturedMedia: function getFeaturedMedia() {
+      var _this = this;
+
+      if (this.item.featured_media === 0) {
+        return;
+      }
+
+      var resourceUrl = "".concat(window.location.origin, "/wp-json/wp/v2/media?include[]=").concat(this.item.featured_media, "&per_page=1");
+      fetch(resourceUrl).then(function (res) {
+        return res.json();
+      }).then(function (data) {
+        if (data) {
+          var url = '';
+
+          if (data[0].media_details.sizes['blog-post']) {
+            url = data[0].media_details.sizes['blog-post'].source_url;
+          } else {
+            url = data[0].media_details.sizes['medium_large'].source_url;
+          }
+
+          _this.featuredMedia = {
+            url: url,
+            alt: data[0].alt_text || _this.item.title.rendered
+          };
+        } else {
+          _this.featuredMedia['alt'] = _this.item.title.rendered;
+        }
+      });
+    },
+    getCategory: function getCategory() {
+      var _this2 = this;
+
+      if (this.item.categories === 0 || this.item.categories.length === 0) {
+        return;
+      }
+
+      var resourceUrl = "".concat(window.location.origin, "/wp-json/wp/v2/categories?include[]=").concat(this.item.categories[0], "&per_page=1");
+      fetch(resourceUrl).then(function (res) {
+        return res.json();
+      }).then(function (data) {
+        _this2.category = {
+          name: data[0].name,
+          link: data[0].link
+        };
+      });
     }
   }
 });
@@ -2721,8 +2749,18 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
-          _c("h3", { staticClass: "font-sans text-base mt-0 mb-2" }, [
-            _vm._v(_vm._s(_vm.formattedDate))
+          _c("p", { staticClass: "mt-0 mb-2" }, [
+            _vm.category.link
+              ? _c("a", { attrs: { href: "category.link" } }, [
+                  _vm._v(_vm._s(_vm.category.name))
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.category.link ? _c("span", [_vm._v("·")]) : _vm._e(),
+            _vm._v(" "),
+            _c("strong", { staticClass: "font-sans text-base" }, [
+              _vm._v(_vm._s(_vm.formattedDate))
+            ])
           ]),
           _vm._v(" "),
           _c("div", {
