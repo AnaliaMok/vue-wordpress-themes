@@ -1,8 +1,11 @@
 <template>
 	<Layout>
 		<section class="mb-12">
-			<h1 class="mb-4 text-grey-darkest text-center font-display">Welcome to Our Blog!</h1>
-			<img :src="banner.url" :alt="banner.alt" class="block w-4/5 mx-auto">
+      <div class="img-wrapper relative w-4/5 mx-auto">
+        <img :src="banner.url" :alt="banner.alt" class="block w-full">
+        <div class="absolute pin bg-grey-darkest opacity-50"></div>
+        <h1 class="absolute text-grey-lightest text-center font-display z-10 blog-title">Welcome to Our Blog!</h1>
+      </div>
 		</section>
 		<Pager resourceType="posts"/>
 	</Layout>
@@ -52,5 +55,11 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.blog-title {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+}
 </style>

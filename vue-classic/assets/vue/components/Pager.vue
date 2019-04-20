@@ -3,7 +3,7 @@
     <template v-for="post in posts">
       <component :is="pagedComponent" :item="post" :key="post.id"></component>
     </template>
-		<h1 v-if="posts.length === 0" class="block w-4/5 mx-auto font-display text-center mb-8">No posts found</h1>
+		<h1 v-if="posts.length === 0" class="block w-4/5 mx-auto font-display text-center mb-8">{{ noPostsMsg }}</h1>
 		<div class="pager block w-4/5 mx-auto">
 			<ul class="list-reset flex text-center justify-center">
 				<li><button @click="prevPage">Prev</button></li>
@@ -31,6 +31,7 @@ export default {
       currentPage: 1,
       totalPages: 1,
       posts: [],
+      noPostsMsg: 'Searching for posts...',
     };
   },
   created() {
@@ -46,7 +47,6 @@ export default {
       if (this.resourceType === 'posts') {
         return 'PostPreview';
       }
-      // return 'PostPreview';
     },
   },
   methods: {
@@ -61,8 +61,11 @@ export default {
           return res.json();
         })
         .then(data => {
-          console.log(data);
-          this.posts = data;
+          if (data) {
+            this.posts = data;
+          } else {
+            this.noPostsMsg = 'No Posts Found';
+          }
         });
     },
     nextPage() {
@@ -76,6 +79,3 @@ export default {
   },
 };
 </script>
-
-<style>
-</style>

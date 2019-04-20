@@ -34,7 +34,7 @@ export default {
       featuredMedia: {
         url:
           window.location.origin +
-          '/wp-content/themes/vue-classic/assets/img/placeholder.png', //'https://via.placeholder.com/768x512.png?text=Loading...',
+          '/wp-content/themes/vue-classic/assets/img/placeholder.png',
         alt: 'Blog Thumbnail',
       },
     };
