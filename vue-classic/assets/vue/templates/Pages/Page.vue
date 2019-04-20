@@ -1,6 +1,6 @@
 <template>
 	<Layout>
-		<PageBanner :banner="thumbnail" :title="title" />
+		<PageBanner v-if="thumbnail" :banner="thumbnail" :title="title" />
 		<section v-html="content" class="mt-8 font-sans font-medium leading-normal page-content text-base px-4 xl:px-0"></section>
 	</Layout>
 </template>

@@ -3,6 +3,7 @@
 		<img :src="props.banner.url" :alt="props.banner.alt" class="block w-full">
 		<div class="absolute pin bg-grey-darkest opacity-50"></div>
 		<h1 class="absolute text-grey-lightest text-center font-display z-10 title">{{ props.title }}</h1>
+		<p v-if="subheading" v-html="subheading"></p>
 	</div>
 </template>
 
@@ -17,6 +18,7 @@ export default {
       },
     },
     title: String,
+    subheading: String,
   },
 };
 </script>

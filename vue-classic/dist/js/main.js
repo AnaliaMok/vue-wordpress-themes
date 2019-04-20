@@ -801,6 +801,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     banner: {
@@ -810,7 +811,8 @@ __webpack_require__.r(__webpack_exports__);
         alt: 'Blog Header'
       }
     },
-    title: String
+    title: String,
+    subheading: String
   }
 });
 
@@ -1123,11 +1125,18 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _components_PageBanner_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/components/PageBanner.vue */ "./assets/vue/components/PageBanner.vue");
 //
 //
 //
 //
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    PageBanner: _components_PageBanner_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
   props: {
     title: String,
     content: String
@@ -2375,7 +2384,11 @@ var render = function(_h, _vm) {
           "absolute text-grey-lightest text-center font-display z-10 title"
       },
       [_vm._v(_vm._s(_vm.props.title))]
-    )
+    ),
+    _vm._v(" "),
+    _vm.subheading
+      ? _c("p", { domProps: { innerHTML: _vm._s(_vm.subheading) } })
+      : _vm._e()
   ])
 }
 var staticRenderFns = []
@@ -2663,7 +2676,11 @@ var render = function() {
   return _c(
     "Layout",
     [
-      _c("PageBanner", { attrs: { banner: _vm.thumbnail, title: _vm.title } }),
+      _vm.thumbnail
+        ? _c("PageBanner", {
+            attrs: { banner: _vm.thumbnail, title: _vm.title }
+          })
+        : _vm._e(),
       _vm._v(" "),
       _c("section", {
         staticClass:
@@ -2696,7 +2713,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("h2", [_vm._v("This is a post")])
+  return _c("Layout", [_c("h2", [_vm._v("This is a post")])])
 }
 var staticRenderFns = []
 render._withStripped = true
