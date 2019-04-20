@@ -8,7 +8,7 @@
 			<ul class="list-reset flex text-center justify-center" v-if="totalPages > 1">
 				<li><button @click="getPage(currentPage - 1)" class="px-4 py-2">Prev</button></li>
         <li v-for="page in pageRange" :key="page">
-          <button class="px-4 py-2" :class="{'font-semibold text-indigo-dark' : page === currentPage }">{{ page }}</button>
+          <button class="px-4 py-2" :class="{'font-bold text-indigo-dark' : page === currentPage }">{{ page }}</button>
         </li>
 				<li><button @click="getPage(currentPage + 1)" class="px-4 py-2">Next</button></li>
 			</ul>
@@ -60,6 +60,10 @@ export default {
         end += 2;
       } else {
         end = end + 1 <= this.totalPages ? end + 1 : this.totalPages;
+
+        if (end === this.totalPages && this.totalPages - 2 > 0) {
+          start = this.totalPages - 2;
+        }
       }
 
       let range = [];
@@ -78,7 +82,7 @@ export default {
 
       fetch(resourceUrl, { credentials: 'same-origin' })
         .then(res => {
-          this.totalPages = res.headers.get('X-WP-TotalPages');
+          this.totalPages = parseInt(res.headers.get('X-WP-TotalPages'));
           return res.json();
         })
         .then(data => {

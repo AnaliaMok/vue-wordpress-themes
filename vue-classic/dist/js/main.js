@@ -693,6 +693,10 @@ __webpack_require__.r(__webpack_exports__);
         end += 2;
       } else {
         end = end + 1 <= this.totalPages ? end + 1 : this.totalPages;
+
+        if (end === this.totalPages && this.totalPages - 2 > 0) {
+          start = this.totalPages - 2;
+        }
       }
 
       var range = [];
@@ -712,7 +716,7 @@ __webpack_require__.r(__webpack_exports__);
       fetch(resourceUrl, {
         credentials: 'same-origin'
       }).then(function (res) {
-        _this.totalPages = res.headers.get('X-WP-TotalPages');
+        _this.totalPages = parseInt(res.headers.get('X-WP-TotalPages'));
         return res.json();
       }).then(function (data) {
         if (data) {
@@ -2139,8 +2143,7 @@ var render = function() {
                       {
                         staticClass: "px-4 py-2",
                         class: {
-                          "font-semibold text-indigo-dark":
-                            page === _vm.currentPage
+                          "font-bold text-indigo-dark": page === _vm.currentPage
                         }
                       },
                       [_vm._v(_vm._s(page))]
