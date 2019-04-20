@@ -5,9 +5,12 @@
     </template>
 		<h1 v-if="posts.length === 0" class="block w-4/5 mx-auto font-display text-center mb-8">{{ noPostsMsg }}</h1>
 		<div class="pager block w-4/5 mx-auto">
-			<ul class="list-reset flex text-center justify-center">
-				<li><button @click="prevPage">Prev</button></li>
-				<li><button @click="nextPage">Next</button></li>
+			<ul class="list-reset flex text-center justify-center" v-if="totalPages > 1">
+				<li><button @click="getPage(currentPage - 1)" class="px-4 py-2">Prev</button></li>
+        <li v-for="page in pageRange" :key="page">
+          <button class="px-4 py-2" :class="{'font-semibold text-indigo-dark' : page === currentPage }">{{ page }}</button>
+        </li>
+				<li><button @click="getPage(currentPage + 1)" class="px-4 py-2">Next</button></li>
 			</ul>
 		</div>
 	</section>
@@ -48,6 +51,24 @@ export default {
         return 'PostPreview';
       }
     },
+    pageRange() {
+      // Display range of 3 pages.
+      let start = this.currentPage - 1 > 0 ? this.currentPage - 1 : 1;
+      let end = this.currentPage;
+
+      if (this.currentPage === 1 && end + 2 <= this.totalPages) {
+        end += 2;
+      } else {
+        end = end + 1 <= this.totalPages ? end + 1 : this.totalPages;
+      }
+
+      let range = [];
+      for (var i = start; i <= end; i++) {
+        range.push(i);
+      }
+
+      return range;
+    },
   },
   methods: {
     getPosts: function() {
@@ -68,13 +89,16 @@ export default {
           }
         });
     },
-    nextPage() {
-      this.currentPage =
-        this.currentPage >= this.totalPages ? 1 : this.currentPage + 1;
-    },
-    prevPage() {
-      this.currentPage =
-        this.currentPage <= 1 ? this.totalPages : this.currentPage - 1;
+    getPage(pageNum) {
+      if (pageNum > this.totalPages) {
+        // Reset to first page.
+        this.currentPage = 1;
+      } else if (pageNum < 1) {
+        // Loop backwards.
+        this.currentPage = this.totalPages;
+      } else {
+        this.currentPage = pageNum;
+      }
     },
   },
 };

@@ -648,6 +648,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -680,6 +683,25 @@ __webpack_require__.r(__webpack_exports__);
       if (this.resourceType === 'posts') {
         return 'PostPreview';
       }
+    },
+    pageRange: function pageRange() {
+      // Display range of 3 pages.
+      var start = this.currentPage - 1 > 0 ? this.currentPage - 1 : 1;
+      var end = this.currentPage;
+
+      if (this.currentPage === 1 && end + 2 <= this.totalPages) {
+        end += 2;
+      } else {
+        end = end + 1 <= this.totalPages ? end + 1 : this.totalPages;
+      }
+
+      var range = [];
+
+      for (var i = start; i <= end; i++) {
+        range.push(i);
+      }
+
+      return range;
     }
   },
   methods: {
@@ -700,11 +722,16 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
     },
-    nextPage: function nextPage() {
-      this.currentPage = this.currentPage >= this.totalPages ? 1 : this.currentPage + 1;
-    },
-    prevPage: function prevPage() {
-      this.currentPage = this.currentPage <= 1 ? this.totalPages : this.currentPage - 1;
+    getPage: function getPage(pageNum) {
+      if (pageNum > this.totalPages) {
+        // Reset to first page.
+        this.currentPage = 1;
+      } else if (pageNum < 1) {
+        // Loop backwards.
+        this.currentPage = this.totalPages;
+      } else {
+        this.currentPage = pageNum;
+      }
     }
   }
 });
@@ -2085,19 +2112,60 @@ var render = function() {
         : _vm._e(),
       _vm._v(" "),
       _c("div", { staticClass: "pager block w-4/5 mx-auto" }, [
-        _c(
-          "ul",
-          { staticClass: "list-reset flex text-center justify-center" },
-          [
-            _c("li", [
-              _c("button", { on: { click: _vm.prevPage } }, [_vm._v("Prev")])
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c("button", { on: { click: _vm.nextPage } }, [_vm._v("Next")])
-            ])
-          ]
-        )
+        _vm.totalPages > 1
+          ? _c(
+              "ul",
+              { staticClass: "list-reset flex text-center justify-center" },
+              [
+                _c("li", [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "px-4 py-2",
+                      on: {
+                        click: function($event) {
+                          return _vm.getPage(_vm.currentPage - 1)
+                        }
+                      }
+                    },
+                    [_vm._v("Prev")]
+                  )
+                ]),
+                _vm._v(" "),
+                _vm._l(_vm.pageRange, function(page) {
+                  return _c("li", { key: page }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "px-4 py-2",
+                        class: {
+                          "font-semibold text-indigo-dark":
+                            page === _vm.currentPage
+                        }
+                      },
+                      [_vm._v(_vm._s(page))]
+                    )
+                  ])
+                }),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "px-4 py-2",
+                      on: {
+                        click: function($event) {
+                          return _vm.getPage(_vm.currentPage + 1)
+                        }
+                      }
+                    },
+                    [_vm._v("Next")]
+                  )
+                ])
+              ],
+              2
+            )
+          : _vm._e()
       ])
     ],
     2
