@@ -1,6 +1,9 @@
 <template>
 	<Layout>
-		<h2>This is a post</h2>
+		<article>
+			<PageBanner :banner="featuredMedia" :title="title" :subheading="bannerCaption" />
+			<div class="px-4 lg:px-0 md:w-4/5 mx-auto mt-8" v-html="content"></div>
+		</article>
 	</Layout>
 </template>
 
@@ -14,6 +17,31 @@ export default {
   props: {
     title: String,
     content: String,
+    thumbnail: Object,
+    date: String,
+    author: {
+      type: Object,
+      default: {
+        name: 'Unknown',
+        link: window.location.origin,
+      },
+    },
+  },
+  computed: {
+    featuredMedia() {
+      const defaultUrl =
+        window.location.origin +
+        '/wp-content/themes/vue-classic/assets/img/placeholder.png';
+
+      return {
+        url: this.thumbnail.url || defaultUrl,
+        alt: this.thumbnail.alt || 'Blog Thumbnail',
+      };
+    },
+    bannerCaption() {
+      return `Published on ${this.date} by <a href='${this.author.link}'>${this
+        .author.name || 'Unknown'}</a>`;
+    },
   },
 };
 </script>

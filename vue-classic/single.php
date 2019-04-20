@@ -21,11 +21,22 @@ if ( have_posts() ) {
 			);
 		}
 
+		$author_id = get_the_author_ID();
+		$author_name = get_the_author_firstname() . ' ' . get_the_author_lastname();
+
+		if ( strlen( $author_name ) <= 1 ) {
+			$author_name = get_the_author_nickname();
+		}
+
 		$post = array(
 			'title'     => get_the_title(),
 			'content'   => apply_filters( 'the_content', get_the_content() ),
 			'thumbnail' => $thumbnail,
 			'date'		=> get_the_date(),
+			'author'	=> array(
+				'name'	=> $author_name,
+				'link'	=> get_author_posts_url( $author_id ),
+			),
 		);
 	}
 }

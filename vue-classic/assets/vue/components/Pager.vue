@@ -86,6 +86,10 @@ export default {
         this.resourceType
       }?per_page=9&page=${this.currentPage}`;
 
+      // Reset while loading.
+      this.noPostsMsg = 'Loading...';
+      this.posts = [];
+
       fetch(resourceUrl, { credentials: 'same-origin' })
         .then(res => {
           this.totalPages = parseInt(res.headers.get('X-WP-TotalPages'));

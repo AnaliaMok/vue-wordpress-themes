@@ -802,6 +802,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     banner: {
@@ -913,7 +915,10 @@ __webpack_require__.r(__webpack_exports__);
     getPosts: function getPosts() {
       var _this = this;
 
-      var resourceUrl = "".concat(window.location.origin, "/wp-json/wp/v2/").concat(this.resourceType, "?per_page=9&page=").concat(this.currentPage);
+      var resourceUrl = "".concat(window.location.origin, "/wp-json/wp/v2/").concat(this.resourceType, "?per_page=9&page=").concat(this.currentPage); // Reset while loading.
+
+      this.noPostsMsg = 'Loading...';
+      this.posts = [];
       fetch(resourceUrl, {
         credentials: 'same-origin'
       }).then(function (res) {
@@ -1132,6 +1137,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -1139,7 +1147,28 @@ __webpack_require__.r(__webpack_exports__);
   },
   props: {
     title: String,
-    content: String
+    content: String,
+    thumbnail: Object,
+    date: String,
+    author: {
+      type: Object,
+      "default": {
+        name: 'Unknown',
+        link: window.location.origin
+      }
+    }
+  },
+  computed: {
+    featuredMedia: function featuredMedia() {
+      var defaultUrl = window.location.origin + '/wp-content/themes/vue-classic/assets/img/placeholder.png';
+      return {
+        url: this.thumbnail.url || defaultUrl,
+        alt: this.thumbnail.alt || 'Blog Thumbnail'
+      };
+    },
+    bannerCaption: function bannerCaption() {
+      return "Published on ".concat(this.date, " by <a href='").concat(this.author.link, "'>").concat(this.author.name || 'Unknown', "</a>");
+    }
   }
 });
 
@@ -1157,7 +1186,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".title[data-v-4b6e4fe6] {\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%);\n  text-shadow: 0 0 6px rgba(0, 0, 0, .5);\n}\n", ""]);
+exports.push([module.i, ".content[data-v-4b6e4fe6] {\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%);\n  text-shadow: 0 0 6px rgba(0, 0, 0, .5);\n}\n.content[data-v-4b6e4fe6] p a {\n  color: #f8fafc;\n}\n", ""]);
 
 // exports
 
@@ -2378,17 +2407,21 @@ var render = function(_h, _vm) {
     _c("div", { staticClass: "absolute pin bg-grey-darkest opacity-50" }),
     _vm._v(" "),
     _c(
-      "h1",
+      "div",
       {
         staticClass:
-          "absolute text-grey-lightest text-center font-display z-10 title"
+          "content inline-block absolute z-10 text-grey-lightest text-center px-4 lg:px-0 w-5/6 lg:w-3/5"
       },
-      [_vm._v(_vm._s(_vm.props.title))]
-    ),
-    _vm._v(" "),
-    _vm.subheading
-      ? _c("p", { domProps: { innerHTML: _vm._s(_vm.subheading) } })
-      : _vm._e()
+      [
+        _c("h1", { staticClass: "font-display text-xl md:text-4xl mb-2" }, [
+          _vm._v(_vm._s(_vm.props.title))
+        ]),
+        _vm._v(" "),
+        _vm.props.subheading
+          ? _c("p", { domProps: { innerHTML: _vm._s(_vm.props.subheading) } })
+          : _vm._e()
+      ]
+    )
   ])
 }
 var staticRenderFns = []
@@ -2713,7 +2746,26 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("Layout", [_c("h2", [_vm._v("This is a post")])])
+  return _c("Layout", [
+    _c(
+      "article",
+      [
+        _c("PageBanner", {
+          attrs: {
+            banner: _vm.featuredMedia,
+            title: _vm.title,
+            subheading: _vm.bannerCaption
+          }
+        }),
+        _vm._v(" "),
+        _c("div", {
+          staticClass: "px-4 lg:px-0 md:w-4/5 mx-auto mt-8",
+          domProps: { innerHTML: _vm._s(_vm.content) }
+        })
+      ],
+      1
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
