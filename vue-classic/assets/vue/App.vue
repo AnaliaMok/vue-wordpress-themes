@@ -1,6 +1,10 @@
 <script>
+// Page Templates
 import Page from '@/templates/Pages/Page.vue';
 import Blog from '@/templates/Pages/Blog.vue';
+
+// Single Templates.
+import Post from '@/templates/Singles/Post.vue';
 
 export default {
   name: 'App',
@@ -18,6 +22,7 @@ export default {
         return {
           Page,
           Blog,
+          Post,
         };
       },
     },
