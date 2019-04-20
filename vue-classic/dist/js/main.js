@@ -651,6 +651,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -2143,10 +2149,16 @@ var render = function() {
                       {
                         staticClass: "px-4 py-2",
                         class: {
-                          "font-bold text-indigo-dark": page === _vm.currentPage
+                          "font-bold text-indigo-dark cursor-not-allowed":
+                            page === _vm.currentPage
+                        },
+                        on: {
+                          click: function($event) {
+                            return _vm.getPage(page)
+                          }
                         }
                       },
-                      [_vm._v(_vm._s(page))]
+                      [_vm._v("\n            " + _vm._s(page) + "\n          ")]
                     )
                   ])
                 }),

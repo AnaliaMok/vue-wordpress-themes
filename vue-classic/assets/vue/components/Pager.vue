@@ -8,7 +8,13 @@
 			<ul class="list-reset flex text-center justify-center" v-if="totalPages > 1">
 				<li><button @click="getPage(currentPage - 1)" class="px-4 py-2">Prev</button></li>
         <li v-for="page in pageRange" :key="page">
-          <button class="px-4 py-2" :class="{'font-bold text-indigo-dark' : page === currentPage }">{{ page }}</button>
+          <button
+            @click="getPage(page)"
+            class="px-4 py-2"
+            :class="{'font-bold text-indigo-dark cursor-not-allowed' : page === currentPage }"
+          >
+            {{ page }}
+          </button>
         </li>
 				<li><button @click="getPage(currentPage + 1)" class="px-4 py-2">Next</button></li>
 			</ul>
