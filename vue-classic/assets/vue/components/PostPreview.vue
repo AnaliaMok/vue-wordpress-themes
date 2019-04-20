@@ -1,9 +1,9 @@
 <template>
-	<article class="flex justify-center items-center block w-4/5 mx-auto mb-8" v-cloak>
-    <figure class="flex-grow w-2/5">
+	<article class="flex justify-center items-center flex-col lg:flex-row block lg:w-4/5 mx-auto mb-8" v-cloak>
+    <figure class="flex-grow md:w-4/5 lg:w-2/5">
       <img :src="featuredMedia.url" :alt="featuredMedia.alt" class="max-w-full">
     </figure>
-    <div class="post__content p-8 flex-grow w-3/5">
+    <div class="post__content p-8 flex-grow md:w-4/5 lg:w-3/5">
       <h2 class="font-display text-2xl mb-2">
         <a :href="item.link || '#'" class="no-underline text-indigo-darker hover:underline">
           {{ item.title.rendered }}

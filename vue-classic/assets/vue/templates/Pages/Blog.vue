@@ -1,7 +1,7 @@
 <template>
 	<Layout>
 		<section class="mb-12">
-      <div class="img-wrapper relative w-4/5 mx-auto">
+      <div class="img-wrapper relative md:w-4/5 mx-auto">
         <img :src="banner.url" :alt="banner.alt" class="block w-full">
         <div class="absolute pin bg-grey-darkest opacity-50"></div>
         <h1 class="absolute text-grey-lightest text-center font-display z-10 blog-title">Welcome to Our Blog!</h1>

@@ -2128,51 +2128,58 @@ var render = function() {
   return _c(
     "article",
     {
-      staticClass: "flex justify-center items-center block w-4/5 mx-auto mb-8"
+      staticClass:
+        "flex justify-center items-center flex-col lg:flex-row block lg:w-4/5 mx-auto mb-8"
     },
     [
-      _c("figure", { staticClass: "flex-grow w-2/5" }, [
+      _c("figure", { staticClass: "flex-grow md:w-4/5 lg:w-2/5" }, [
         _c("img", {
           staticClass: "max-w-full",
           attrs: { src: _vm.featuredMedia.url, alt: _vm.featuredMedia.alt }
         })
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "post__content p-8 flex-grow w-3/5" }, [
-        _c("h2", { staticClass: "font-display text-2xl mb-2" }, [
+      _c(
+        "div",
+        { staticClass: "post__content p-8 flex-grow md:w-4/5 lg:w-3/5" },
+        [
+          _c("h2", { staticClass: "font-display text-2xl mb-2" }, [
+            _c(
+              "a",
+              {
+                staticClass: "no-underline text-indigo-darker hover:underline",
+                attrs: { href: _vm.item.link || "#" }
+              },
+              [
+                _vm._v(
+                  "\n          " +
+                    _vm._s(_vm.item.title.rendered) +
+                    "\n        "
+                )
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("h3", { staticClass: "font-sans text-base mb-2" }, [
+            _vm._v(_vm._s(_vm.formattedDate))
+          ]),
+          _vm._v(" "),
+          _c("div", {
+            staticClass: "font-sans leading-normal",
+            domProps: { innerHTML: _vm._s(_vm.item.excerpt.rendered) }
+          }),
+          _vm._v(" "),
           _c(
             "a",
             {
-              staticClass: "no-underline text-indigo-darker hover:underline",
+              staticClass:
+                "inline-block no-underline font-sans text-indigo-dark hover:underline mt-4",
               attrs: { href: _vm.item.link || "#" }
             },
-            [
-              _vm._v(
-                "\n          " + _vm._s(_vm.item.title.rendered) + "\n        "
-              )
-            ]
+            [_vm._v("\n        Read More\n      ")]
           )
-        ]),
-        _vm._v(" "),
-        _c("h3", { staticClass: "font-sans text-base mb-2" }, [
-          _vm._v(_vm._s(_vm.formattedDate))
-        ]),
-        _vm._v(" "),
-        _c("div", {
-          staticClass: "font-sans leading-normal",
-          domProps: { innerHTML: _vm._s(_vm.item.excerpt.rendered) }
-        }),
-        _vm._v(" "),
-        _c(
-          "a",
-          {
-            staticClass:
-              "inline-block no-underline font-sans text-indigo-dark hover:underline mt-4",
-            attrs: { href: _vm.item.link || "#" }
-          },
-          [_vm._v("\n        Read More\n      ")]
-        )
-      ])
+        ]
+      )
     ]
   )
 }
@@ -2231,7 +2238,7 @@ var render = function() {
     "Layout",
     [
       _c("section", { staticClass: "mb-12" }, [
-        _c("div", { staticClass: "img-wrapper relative w-4/5 mx-auto" }, [
+        _c("div", { staticClass: "img-wrapper relative md:w-4/5 mx-auto" }, [
           _c("img", {
             staticClass: "block w-full",
             attrs: { src: _vm.banner.url, alt: _vm.banner.alt }
