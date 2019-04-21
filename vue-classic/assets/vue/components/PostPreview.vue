@@ -10,7 +10,7 @@
         </a>
       </h2>
       <p class="mt-0 mb-2">
-        <a v-if="category.link" href="category.link">{{ category.name }}</a>
+        <a v-if="category.link" :href="category.link">{{ category.name }}</a>
         <span v-if="category.link">&middot;</span>
         <strong class="font-sans text-base">{{ formattedDate }}</strong>
       </p>

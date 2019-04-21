@@ -2751,7 +2751,7 @@ var render = function() {
           _vm._v(" "),
           _c("p", { staticClass: "mt-0 mb-2" }, [
             _vm.category.link
-              ? _c("a", { attrs: { href: "category.link" } }, [
+              ? _c("a", { attrs: { href: _vm.category.link } }, [
                   _vm._v(_vm._s(_vm.category.name))
                 ])
               : _vm._e(),
