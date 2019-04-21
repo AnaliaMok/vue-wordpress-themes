@@ -11,12 +11,10 @@ export default {
   name: 'App',
   functional: true,
   props: {
-    component: {
-      type: String,
-      required: true,
-    },
+    component: String,
     props: Object,
     // Future TODO: Find cleaner workaround for component registration.
+    // Might be easier solved in JSX implementation.
     components: {
       type: Object,
       default() {
@@ -31,6 +29,15 @@ export default {
   },
   render: function(h, context) {
     let { component, props, components } = context.props;
+
+    if (
+      component === undefined ||
+      !Object.keys(components).includes(component)
+    ) {
+      // FUTURE TODO: Fallback to page markup?
+      return h('Layout');
+    }
+
     return h(components[component], {
       props: { ...props },
     });

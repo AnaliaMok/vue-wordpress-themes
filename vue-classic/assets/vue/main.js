@@ -14,8 +14,8 @@ new Vue({
   render: h => {
     return h(App, {
       props: {
-        component: app.dataset.component || 'Page',
-        props: JSON.parse(app.dataset.props),
+        component: app.dataset.component,
+        props: app.dataset.props ? JSON.parse(app.dataset.props) : null,
       },
     });
   },

@@ -6,8 +6,13 @@
  */
 
 get_header();
+
+// TODO:
+// Sections:
+// Page Hero
+// Latest Posts Component
 ?>
 
-<h2>Front Page</h2>
+<div id="app"></div>
 
 <?php get_footer(); ?>

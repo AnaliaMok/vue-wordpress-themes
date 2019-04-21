@@ -12,15 +12,32 @@
 <script>
 export default {
   props: {
-    banner: {
-      type: Object,
-      default: {
+    banner: Object,
+    title: String,
+    subheading: String,
+  },
+  data() {
+    return {
+      defaultBannerImage: {
         url: 'https://via.placeholder.com/1920x1080.png',
         alt: 'Blog Header',
       },
+    };
+  },
+  computed: {
+    bannerImage() {
+      if (this.banner === null) {
+        return this.defaultBannerImage;
+      }
+
+      return {
+        url: this.banner.url || this.defaultBannerImage.url,
+        alt:
+          this.banner.alt.length > 0
+            ? this.banner.alt
+            : this.defaultBannerImage.alt,
+      };
     },
-    title: String,
-    subheading: String,
   },
 };
 </script>
