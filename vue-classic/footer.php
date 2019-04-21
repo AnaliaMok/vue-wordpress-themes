@@ -1,9 +1,17 @@
+<?php
+/**
+ * File: footer.php
+ *
+ * @package Vue_Classic
+ */
+
+?>
 			<footer class="footer container mx-auto text-center py-8" role="contentinfo">
 				<p class="copyright font-sans font-medium">
-					&copy; <?php echo date('Y'); ?> Copyright <?php bloginfo('name');?>
+					&copy; <?php echo esc_html( date( 'Y' ) ); ?> Copyright <?php bloginfo( 'name' ); ?>
 				</p>
 				<!-- /copyright -->
 			</footer><!-- /footer -->
-		<?php wp_footer();?>
+		<?php wp_footer(); ?>
 	</body>
 </html>

@@ -9,30 +9,30 @@ get_header();
 ?>
 
 <?php
-$page = array();
+$data = array();
 
 if ( have_posts() ) {
 	the_post();
 
-	$post_id = get_the_ID();
+	$curr_post_id = get_the_ID();
 
-	if ( ! empty( get_the_post_thumbnail( $post_id, 'banner' ) ) ) {
+	if ( ! empty( get_the_post_thumbnail( $curr_post_id, 'banner' ) ) ) {
 		$thumbnail = array(
 			'alt' => get_post_meta( get_post_thumbnail_id(), '_wp_attachment_image_alt', true ),
-			'url' => get_the_post_thumbnail_url( $post_id, 'banner' ),
+			'url' => get_the_post_thumbnail_url( $curr_post_id, 'banner' ),
 		);
 	}
 
-	$page = array(
-		'title'   => get_the_title(),
-		'content' => apply_filters( 'the_content', get_the_content() ),
+	$data = array(
+		'title'     => get_the_title(),
+		'content'   => apply_filters( 'the_content', get_the_content() ),
 		'thumbnail' => $thumbnail,
 	);
 }
 
-$data = wp_json_encode( $page );
+$data = wp_json_encode( $data );
 ?>
 
-<div id="app" data-component="Page" data-props='<?php print_r( $data ); ?>'></div>
+<div id="app" data-component="Page" data-props='<?php echo esc_html( $data ); ?>'></div>
 
 <?php get_footer(); ?>
