@@ -17,7 +17,10 @@ define( 'ASSET_DIR', THEME_URI . '/assets/img/' );
  */
 function vueclassic_styles() {
 	wp_enqueue_style( 'vueclassic-styles', THEME_URI . '/dist/css/styles.min.css', array(), date( 'H:i:s' ) );
-	wp_enqueue_script( 'vueclassic-scripts', THEME_URI . '/dist/js/main.js', array(), date( 'H:i:s' ), true );
+
+	if ( ! is_404() ) {
+		wp_enqueue_script( 'vueclassic-scripts', THEME_URI . '/dist/js/main.js', array(), date( 'H:i:s' ), true );
+	}
 }
 add_action( 'wp_enqueue_scripts', 'vueclassic_styles' );
 
