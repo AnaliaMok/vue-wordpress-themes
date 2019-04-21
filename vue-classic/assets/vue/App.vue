@@ -1,6 +1,7 @@
 <script>
 // Page Templates
 import Page from '@/templates/Pages/Page.vue';
+import FrontPage from '@/templates/Pages/FrontPage.vue';
 import Blog from '@/templates/Pages/Blog.vue';
 import Listing from '@/templates/Pages/Listing.vue';
 
@@ -20,6 +21,7 @@ export default {
       default() {
         return {
           Page,
+          FrontPage,
           Blog,
           Post,
           Listing,
