@@ -57,7 +57,9 @@ $data['latestposts'] = array_map(
 		}
 
 		return array(
+			'id'		=> $post->ID,
 			'title'     => $post->post_title,
+			'slug'		=> get_the_permalink( $post->ID ),
 			'date'      => $post->post_date,
 			'thumbnail' => $thumbnail,
 			'author'    => array(
