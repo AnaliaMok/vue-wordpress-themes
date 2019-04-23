@@ -1,0 +1,43 @@
+@tailwind preflight;
+@tailwind components;
+@tailwind utilities;
+
+body {
+	@apply font-sans;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	@apply font-display my-4;
+}
+
+a {
+	@apply text-blue-dark;
+}
+
+p {
+	@apply leading-normal;
+	margin-bottom: 1rem;
+}
+
+ul, ol {
+	@apply my-4;
+}
+
+li {
+	@apply leading-normal;
+}
+
+nav ul {
+	margin: 0;
+}
+
+nav li a{
+	@apply block px-4 py-4 no-underline font-display text-grey-lightest text-lg;
+	transition: all 0.2s;
+}
+
+
+nav li.current-menu-item a,
+nav li a:hover {
+	@apply bg-blue text-grey-lighter;
+}
