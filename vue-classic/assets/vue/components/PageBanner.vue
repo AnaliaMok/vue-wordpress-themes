@@ -10,6 +10,8 @@
 </template>
 
 <script>
+import { Placeholders } from '@/helpers/constants.js';
+
 export default {
   props: {
     banner: Object,
@@ -19,7 +21,7 @@ export default {
   data() {
     return {
       defaultBannerImage: {
-        url: 'https://via.placeholder.com/1920x1080.png',
+        url: Placeholders.banner,
         alt: 'Blog Header',
       },
     };

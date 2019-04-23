@@ -9,6 +9,7 @@
 
 <script>
 import PageBanner from '@/components/PageBanner.vue';
+import { Placeholders } from '@/helpers/constants.js';
 
 export default {
   components: {
@@ -29,9 +30,7 @@ export default {
   },
   computed: {
     featuredMedia() {
-      const defaultUrl =
-        window.location.origin +
-        '/wp-content/themes/vue-classic/assets/img/placeholder.png';
+      const defaultUrl = Placeholders.banner;
 
       let url = this.thumbnail ? this.thumbnail.url : '';
       let alt = this.thumbnail ? this.thumbnail.alt : this.title;

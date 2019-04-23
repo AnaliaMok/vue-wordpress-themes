@@ -459,6 +459,23 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./assets/vue/helpers/constants.js":
+/*!*****************************************!*\
+  !*** ./assets/vue/helpers/constants.js ***!
+  \*****************************************/
+/*! exports provided: Placeholders */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Placeholders", function() { return Placeholders; });
+var Placeholders = {
+  thumbnail: window.location.origin + '/wp-content/themes/vue-classic/assets/img/placeholder.png',
+  banner: window.location.origin + '/wp-content/themes/vue-classic/assets/img/placeholder-1920_1080.png'
+};
+
+/***/ }),
+
 /***/ "./assets/vue/layouts/DefaultLayout.vue":
 /*!**********************************************!*\
   !*** ./assets/vue/layouts/DefaultLayout.vue ***!
@@ -527,14 +544,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _App_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./App.vue */ "./assets/vue/App.vue");
 
 
+ // Make console clean.
+
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.config.productionTip = false; // Register Global Components.
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('Layout', _layouts_DefaultLayout_vue__WEBPACK_IMPORTED_MODULE_1__["default"]);
 var app = document.getElementById('app');
 new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
-  data: {
-    component: '',
-    props: {}
-  },
   render: function render(h) {
     return h(_App_vue__WEBPACK_IMPORTED_MODULE_2__["default"], {
       props: {
@@ -1010,6 +1026,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _helpers_constants_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/helpers/constants.js */ "./assets/vue/helpers/constants.js");
 //
 //
 //
@@ -1021,6 +1038,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     banner: Object,
@@ -1030,7 +1048,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       defaultBannerImage: {
-        url: 'https://via.placeholder.com/1920x1080.png',
+        url: _helpers_constants_js__WEBPACK_IMPORTED_MODULE_0__["Placeholders"].banner,
         alt: 'Blog Header'
       }
     };
@@ -1117,7 +1135,8 @@ __webpack_require__.r(__webpack_exports__);
     pagedComponent: function pagedComponent() {
       if (this.resourceType === 'posts') {
         return 'PostPreview';
-      }
+      } // TODO: Extend this list when necessary.
+
     },
     pageRange: function pageRange() {
       // Display range of 3 pages.
@@ -1195,6 +1214,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _mixins_DateMixin_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/mixins/DateMixin.js */ "./assets/vue/mixins/DateMixin.js");
+/* harmony import */ var _helpers_constants_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/helpers/constants.js */ "./assets/vue/helpers/constants.js");
 //
 //
 //
@@ -1220,6 +1240,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   mixins: [_mixins_DateMixin_js__WEBPACK_IMPORTED_MODULE_0__["DateMixin"]],
   props: {
@@ -1231,7 +1252,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       featuredMedia: {
-        url: window.location.origin + '/wp-content/themes/vue-classic/assets/img/placeholder.png',
+        url: _helpers_constants_js__WEBPACK_IMPORTED_MODULE_1__["Placeholders"].thumbnail,
         alt: 'Blog Thumbnail'
       },
       category: {}
@@ -1308,6 +1329,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _mixins_DateMixin_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/mixins/DateMixin.js */ "./assets/vue/mixins/DateMixin.js");
+/* harmony import */ var _helpers_constants_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/helpers/constants.js */ "./assets/vue/helpers/constants.js");
 //
 //
 //
@@ -1319,6 +1341,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   mixins: [_mixins_DateMixin_js__WEBPACK_IMPORTED_MODULE_0__["DateMixin"]],
   props: {
@@ -1327,7 +1350,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       defaultThumbnail: {
-        url: window.location.origin + '/wp-content/themes/vue-classic/assets/img/placeholder.png',
+        url: _helpers_constants_js__WEBPACK_IMPORTED_MODULE_1__["Placeholders"].thumbnail,
         alt: 'Blog Thumbnail'
       }
     };
@@ -1510,6 +1533,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_PageBanner_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/components/PageBanner.vue */ "./assets/vue/components/PageBanner.vue");
+/* harmony import */ var _helpers_constants_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/helpers/constants.js */ "./assets/vue/helpers/constants.js");
 //
 //
 //
@@ -1519,6 +1543,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -1539,7 +1564,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     featuredMedia: function featuredMedia() {
-      var defaultUrl = window.location.origin + '/wp-content/themes/vue-classic/assets/img/placeholder.png';
+      var defaultUrl = _helpers_constants_js__WEBPACK_IMPORTED_MODULE_1__["Placeholders"].banner;
       var url = this.thumbnail ? this.thumbnail.url : '';
       var alt = this.thumbnail ? this.thumbnail.alt : this.title;
       return {

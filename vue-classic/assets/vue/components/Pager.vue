@@ -57,6 +57,7 @@ export default {
       if (this.resourceType === 'posts') {
         return 'PostPreview';
       }
+      // TODO: Extend this list when necessary.
     },
     pageRange() {
       // Display range of 3 pages.
@@ -82,7 +83,7 @@ export default {
     },
   },
   methods: {
-    getPosts: function() {
+    getPosts() {
       let resourceUrl = `${window.location.origin}/wp-json/wp/v2/${
         this.resourceType
       }?per_page=9&page=${this.currentPage}`;

@@ -10,6 +10,7 @@
 
 <script>
 import { DateMixin } from '@/mixins/DateMixin.js';
+import { Placeholders } from '@/helpers/constants.js';
 
 export default {
   mixins: [DateMixin],
@@ -19,9 +20,7 @@ export default {
   data() {
     return {
       defaultThumbnail: {
-        url:
-          window.location.origin +
-          '/wp-content/themes/vue-classic/assets/img/placeholder.png',
+        url: Placeholders.thumbnail,
         alt: 'Blog Thumbnail',
       },
     };
