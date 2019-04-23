@@ -4,7 +4,7 @@ This repo contains simple boilerplate themes for using Vue in WordPress. To down
 
 __NOTE__: All themes are currently tested and developed for the Classic Editor.
 
-* `vue-classic` - __[IN PROGRESS]__ Standard Vue theme and ES6 features.
+* `vue-classic` - __[STABLE]__ Standard Vue theme and ES6 features. [https://github.com/AnaliaMok/vue-wordpress-themes/releases/tag/vue-classic%40v1.0.0](https://github.com/AnaliaMok/vue-wordpress-themes/releases/tag/vue-classic%40v1.0.0)
 * `vue-jsx` - __[DEVELOPMENT TO COME]__ Theme with JSX render support enabled.
 * `vue-typescript` - __[DEVELOPMENT TO COME]__ Theme with Typescript support enabled.
 * `vue-jsx-ts` - __[DEVELOPMENT TO COME]__ The happy marriage of Typescript and JSX.
@@ -12,7 +12,7 @@ __NOTE__: All themes are currently tested and developed for the Classic Editor.
 
 ## Common Technologies
 * Vue v2.6.10
-* Laravel Mix (soon to be Webpack)
+* Laravel Mix (soon to be Webpack, maybe...)
 * Tailwind v0.7.4
 
 Installation instructions inside each theme's readme
