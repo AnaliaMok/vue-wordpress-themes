@@ -1,27 +1,3 @@
-<template>
-	<article class="flex justify-center items-center flex-col lg:flex-row block lg:w-4/5 mx-auto mb-8" v-cloak>
-    <figure class="flex-grow md:w-4/5 lg:w-2/5">
-      <img :src="featuredMedia.url" :alt="featuredMedia.alt" class="max-w-full">
-    </figure>
-    <div class="post__content p-8 flex-grow md:w-4/5 lg:w-3/5">
-      <h2 class="font-display text-2xl mt-0 mb-2">
-        <a :href="item.link || '#'" class="no-underline text-indigo-darker hover:underline">
-          {{ item.title.rendered }}
-        </a>
-      </h2>
-      <p class="mt-0 mb-2">
-        <a v-if="category.link" :href="category.link">{{ category.name }}</a>
-        <span v-if="category.link">&middot;</span>
-        <strong class="font-sans text-base">{{ formattedDate }}</strong>
-      </p>
-      <div v-html="item.excerpt.rendered" class="font-sans leading-normal"></div>
-      <a :href="item.link || '#'" class="inline-block no-underline font-sans text-indigo-dark hover:underline mt-4">
-        Read More
-      </a>
-    </div>
-	</article>
-</template>
-
 <script>
 import { DateMixin } from '@/mixins/DateMixin.js';
 import { Placeholders } from '@/helpers/constants.js';
@@ -37,7 +13,7 @@ export default {
   data() {
     return {
       featuredMedia: {
-        url: Placeholders.thumbnail,
+        src: Placeholders.thumbnail,
         alt: 'Blog Thumbnail',
       },
       category: {},
@@ -66,16 +42,16 @@ export default {
         .then(res => res.json())
         .then(data => {
           if (data) {
-            let url = '';
+            let src = '';
 
             if (data[0].media_details.sizes['blog-post']) {
-              url = data[0].media_details.sizes['blog-post'].source_url;
+              src = data[0].media_details.sizes['blog-post'].source_url;
             } else {
-              url = data[0].media_details.sizes['medium_large'].source_url;
+              src = data[0].media_details.sizes['medium_large'].source_url;
             }
 
             this.featuredMedia = {
-              url,
+              src,
               alt: data[0].alt_text || this.item.title.rendered,
             };
           } else {
@@ -103,6 +79,53 @@ export default {
           };
         });
     },
+  },
+  render(h, context) {
+    let thumbnail;
+
+    return (
+      <article class="flex justify-center items-center flex-col lg:flex-row block lg:w-4/5 mx-auto mb-8">
+        <figure class="flex-grow md:w-4/5 lg:w-2/5">
+          <img
+            src={this.featuredMedia.src}
+            alt={this.featuredMedia.alt}
+            class="max-w-full"
+          />
+        </figure>
+        <div class="post__content p-8 flex-grow md:w-4/5 lg:w-3/5">
+          <h2 class="font-display text-2xl mt-0 mb-2">
+            <a
+              href={this.item.link || '#'}
+              class="no-underline text-indigo-darker hover:underline"
+            >
+              {this.item.title.rendered}
+            </a>
+          </h2>
+          {/* End of Post Title */}
+          <p class="mt-0 mb-2">
+            <a
+              href={this.category.link}
+              class={this.category.link ? '' : 'hidden'}
+            >
+              {this.category.name}
+            </a>
+            <span class={this.category.link ? 'mx-2' : 'hidden'}>&middot;</span>
+            <strong class="font-sans text-base">{this.formattedDate}</strong>
+          </p>
+          {/* End of Category Link */}
+          <div
+            domPropsInnerHTML={this.item.excerpt.rendered}
+            class="font-sans leading-normal"
+          />
+          <a
+            href={this.item.link || '#'}
+            class="inline-block no-underline font-sans text-indigo-dark hover:underline mt-4"
+          >
+            Read More
+          </a>
+        </div>
+      </article>
+    );
   },
 };
 </script>
