@@ -1,27 +1,3 @@
-<template>
-	<section>
-    <template v-for="post in posts">
-      <component :is="pagedComponent" :item="post" :key="post.id"></component>
-    </template>
-		<h1 v-show="posts.length === 0" class="block w-4/5 mx-auto font-display text-center mb-8">{{ noPostsMsg }}</h1>
-		<div class="pager block w-4/5 mx-auto">
-			<ul class="list-reset flex text-center justify-center" v-if="totalPages > 1">
-				<li><button @click="getPage(currentPage - 1)" class="px-4 py-2">Prev</button></li>
-        <li v-for="page in pageRange" :key="page">
-          <button
-            @click="getPage(page)"
-            class="px-4 py-2"
-            :class="{'font-bold text-indigo-dark cursor-not-allowed' : page === currentPage }"
-          >
-            {{ page }}
-          </button>
-        </li>
-				<li><button @click="getPage(currentPage + 1)" class="px-4 py-2">Next</button></li>
-			</ul>
-		</div>
-	</section>
-</template>
-
 <script>
 import PostPreview from '@/components/PostPreview.vue';
 
@@ -120,6 +96,66 @@ export default {
         this.currentPage = pageNum;
       }
     },
+  },
+  render(h, context) {
+    const noPostTag = h(
+      'h1',
+      {
+        class: {
+          hidden: this.posts.length !== 0,
+          'block w-4/5 mx-auto font-display text-center mb-8': true,
+        },
+      },
+      this.noPostsMsg
+    );
+
+    let listDisplayClass = 'list-reset flex text-center justify-center';
+    listDisplayClass += this.totalPages <= 1 ? ' hidden' : '';
+
+    return (
+      <section>
+        {/* TODO: Implement Post Preview loop here */}
+        {noPostTag}
+        <div class="pager block w-4/5 mx-auto">
+          <ul class={listDisplayClass}>
+            <li>
+              <button
+                onClick={this.getPage.bind(this, this.currentPage - 1)}
+                class="px-4 py-2"
+              >
+                Prev
+              </button>
+            </li>
+            {this.pageRange.map((pageNum, i) => {
+              let buttonClass = 'px-4 py-2';
+
+              if (pageNum === this.currentPage) {
+                buttonClass += ' font-bold text-indigo-dark cursor-not-allowed';
+              }
+
+              return (
+                <li key={i}>
+                  <button
+                    onClick={this.getPage.bind(this, pageNum)}
+                    class={buttonClass}
+                  >
+                    {pageNum}
+                  </button>
+                </li>
+              );
+            })}
+            <li>
+              <button
+                onClick={this.getPage.bind(this, this.currentPage + 1)}
+                class="px-4 py-2"
+              >
+                Next
+              </button>
+            </li>
+          </ul>
+        </div>
+      </section>
+    );
   },
 };
 </script>

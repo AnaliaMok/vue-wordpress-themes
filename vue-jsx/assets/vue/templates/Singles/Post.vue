@@ -33,8 +33,7 @@ export default {
         .author.name || 'Unknown'}</a>`;
     },
   },
-  render: function(h, context) {
-    // TODO: Refactor names in favor of object spreading.
+  render(h, context) {
     return (
       <Layout>
         <article>

@@ -2,6 +2,7 @@
 import { Placeholders } from '@/helpers/constants.js';
 
 export default {
+  name: 'PageBanner',
   functional: true,
   props: {
     banner: Object,

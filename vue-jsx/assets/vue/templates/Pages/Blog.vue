@@ -1,18 +1,8 @@
-<template>
-  <Page :title="title" :content="content" :thumbnail="thumbnail">
-		<Pager resourceType="posts"/>
-  </Page>
-</template>
-
 <script>
 import Page from '@/templates/Pages/Page.vue';
 import Pager from '@/components/Pager.vue';
 
 export default {
-  components: {
-    Page,
-    Pager,
-  },
   props: {
     title: {
       type: String,
@@ -26,6 +16,17 @@ export default {
       posts: [],
       currentPage: 1,
     };
+  },
+  render(h, context) {
+    return (
+      <Page
+        title={this.title}
+        content={this.content}
+        thumbnail={this.thumbnail}
+      >
+        <Pager resourceType="posts" />
+      </Page>
+    );
   },
 };
 </script>
