@@ -1,13 +1,3 @@
-<template>
-	<section class="px-4 md:px-0 md:w-4/5 mx-auto flex">
-		<div v-for="item in items" :key="item.id">
-			<img :src="getThumbnailUrl(item)" :alt="getThumbnailAlt(item)" class="w-full">
-			<strong class="block mt-2 px-4">{{ getFormattedDate(item.date) }}</strong>
-			<a :href="item.slug"><h3 class="mt-2 px-4">{{ item.title }}</h3></a>
-		</div>
-	</section>
-</template>
-
 <script>
 import { DateMixin } from '@/mixins/DateMixin.js';
 import { Placeholders } from '@/helpers/constants.js';
@@ -40,6 +30,29 @@ export default {
         return this.defaultThumbnail.alt;
       }
     },
+  },
+  render(h) {
+    return (
+      <section class="px-4 md:px-0 md:w-4/5 mx-auto flex">
+        {this.items.map((item, i) => {
+          return (
+            <div key={item.id}>
+              <img
+                src={this.getThumbnailUrl(item)}
+                alt={this.getThumbnailAlt(item)}
+                class="w-full"
+              />
+              <strong class="block mt-2 px-4">
+                {this.getFormattedDate(item.date)}
+              </strong>
+              <a href={item.slug}>
+                <h3 class="mt-2 px-4">{item.title}</h3>
+              </a>
+            </div>
+          );
+        })}
+      </section>
+    );
   },
 };
 </script>
