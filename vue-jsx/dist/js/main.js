@@ -1116,7 +1116,14 @@ __webpack_require__.r(__webpack_exports__);
     }, this.noPostsMsg);
     var listDisplayClass = 'list-reset flex text-center justify-center';
     listDisplayClass += this.totalPages <= 1 ? ' hidden' : '';
-    return h("section", [noPostTag, h("div", {
+    return h("section", [this.posts.map(function (post, index) {
+      return h(_this2.pagedComponent, {
+        props: {
+          item: post
+        },
+        key: post.id
+      });
+    }), noPostTag, h("div", {
       "class": "pager block w-4/5 mx-auto"
     }, [h("ul", {
       "class": listDisplayClass

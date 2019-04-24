@@ -114,7 +114,14 @@ export default {
 
     return (
       <section>
-        {/* TODO: Implement Post Preview loop here */}
+        {this.posts.map((post, index) => {
+          return h(this.pagedComponent, {
+            props: {
+              item: post,
+            },
+            key: post.id,
+          });
+        })}
         {noPostTag}
         <div class="pager block w-4/5 mx-auto">
           <ul class={listDisplayClass}>
