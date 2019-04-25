@@ -81,16 +81,17 @@ export default {
     },
   },
   render(h, context) {
-    let thumbnail;
+    let thumbnail = {
+      attrs: {
+        src: this.featuredMedia.src,
+        alt: this.featuredMedia.alt,
+      },
+    };
 
     return (
       <article class="flex justify-center items-center flex-col lg:flex-row block lg:w-4/5 mx-auto mb-8">
         <figure class="flex-grow md:w-4/5 lg:w-2/5">
-          <img
-            src={this.featuredMedia.src}
-            alt={this.featuredMedia.alt}
-            class="max-w-full"
-          />
+          <img {...thumbnail} class="max-w-full" />
         </figure>
         <div class="post__content p-8 flex-grow md:w-4/5 lg:w-3/5">
           <h2 class="font-display text-2xl mt-0 mb-2">

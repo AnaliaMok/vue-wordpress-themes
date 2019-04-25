@@ -7,41 +7,20 @@ export default {
   props: {
     items: Array,
   },
-  data() {
-    return {
-      defaultThumbnail: {
-        url: Placeholders.thumbnail,
-        alt: 'Blog Thumbnail',
-      },
-    };
-  },
-  methods: {
-    getThumbnailUrl(item) {
-      if (item.thumbnail) {
-        return item.thumbnail.url;
-      } else {
-        return this.defaultThumbnail.url;
-      }
-    },
-    getThumbnailAlt(item) {
-      if (item.thumbnail) {
-        return item.thumbnail.alt;
-      } else {
-        return this.defaultThumbnail.alt;
-      }
-    },
-  },
   render(h) {
     return (
       <section class="px-4 md:px-0 md:w-4/5 mx-auto flex">
         {this.items.map((item, i) => {
+          let imgProps = {
+            attrs: {
+              src: item.thumbnail ? item.thumbnail.url : Placeholders.thumbnail,
+              alt: item.thumbnail ? item.thumbnail.alt : item.title,
+            },
+          };
+
           return (
             <div key={item.id}>
-              <img
-                src={this.getThumbnailUrl(item)}
-                alt={this.getThumbnailAlt(item)}
-                class="w-full"
-              />
+              <img {...imgProps} class="w-full" />
               <strong class="block mt-2 px-4">
                 {this.getFormattedDate(item.date)}
               </strong>

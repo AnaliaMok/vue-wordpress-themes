@@ -14,7 +14,6 @@ export default {
   data() {
     return {
       posts: [],
-      currentPage: 1,
     };
   },
   render(h, context) {
