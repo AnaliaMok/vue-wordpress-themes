@@ -890,18 +890,6 @@ __webpack_require__.r(__webpack_exports__);
         banner = _context$props.banner,
         title = _context$props.title,
         subheading = _context$props.subheading;
-    var subheadingMarkup;
-
-    if (subheading) {
-      subheadingMarkup = h("p", {
-        "domProps": {
-          "innerHTML": subheading
-        }
-      });
-    } else {
-      subheadingMarkup = null;
-    }
-
     return h("div", {
       "class": "img-wrapper relative md:w-4/5 mx-auto"
     }, [h("img", {
@@ -916,7 +904,15 @@ __webpack_require__.r(__webpack_exports__);
       "class": "content inline-block absolute z-10 text-grey-lightest text-center px-4 lg:px-0 w-5/6 lg:w-3/5"
     }, [h("h1", {
       "class": "font-display text-xl md:text-4xl mb-2"
-    }, [title]), subheadingMarkup])]);
+    }, [title]), h("p", {
+      "directives": [{
+        name: "show",
+        value: subheading
+      }],
+      "domProps": {
+        "innerHTML": subheading
+      }
+    })])]);
   }
 });
 
@@ -1032,12 +1028,6 @@ __webpack_require__.r(__webpack_exports__);
   render: function render(h, context) {
     var _this2 = this;
 
-    var noPostTag = h('h1', {
-      "class": {
-        hidden: this.posts.length !== 0,
-        'block w-4/5 mx-auto font-display text-center mb-8': true
-      }
-    }, this.noPostsMsg);
     var listDisplayClass = 'list-reset flex text-center justify-center';
     listDisplayClass += this.totalPages <= 1 ? ' hidden' : '';
     return h("section", [this.posts.map(function (post, index) {
@@ -1047,7 +1037,13 @@ __webpack_require__.r(__webpack_exports__);
         },
         key: post.id
       });
-    }), noPostTag, h("div", {
+    }), h("h1", {
+      "directives": [{
+        name: "show",
+        value: this.posts.length === 0
+      }],
+      "class": "block w-4/5 mx-auto font-display text-center mb-8"
+    }, [this.noPostsMsg]), h("div", {
       "class": "pager block w-4/5 mx-auto"
     }, [h("ul", {
       "class": listDisplayClass
@@ -1198,7 +1194,11 @@ __webpack_require__.r(__webpack_exports__);
       },
       "class": this.category.link ? '' : 'hidden'
     }, [this.category.name]), h("span", {
-      "class": this.category.link ? 'mx-2' : 'hidden'
+      "class": "mx-2",
+      "directives": [{
+        name: "show",
+        value: this.category.link
+      }]
     }, ["\xB7"]), h("strong", {
       "class": "font-sans text-base"
     }, [this.formattedDate])]), h("div", {

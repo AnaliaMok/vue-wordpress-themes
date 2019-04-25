@@ -34,13 +34,6 @@ export default {
   },
   render(h, context) {
     let { banner, title, subheading } = context.props;
-    let subheadingMarkup;
-
-    if (subheading) {
-      subheadingMarkup = <p domPropsInnerHTML={subheading} />;
-    } else {
-      subheadingMarkup = null;
-    }
 
     return (
       <div class="img-wrapper relative md:w-4/5 mx-auto">
@@ -48,7 +41,7 @@ export default {
         <div class="absolute pin bg-grey-darkest opacity-50" />
         <div class="content inline-block absolute z-10 text-grey-lightest text-center px-4 lg:px-0 w-5/6 lg:w-3/5">
           <h1 class="font-display text-xl md:text-4xl mb-2">{title}</h1>
-          {subheadingMarkup}
+          <p v-show={subheading} domPropsInnerHTML={subheading} />
         </div>
       </div>
     );

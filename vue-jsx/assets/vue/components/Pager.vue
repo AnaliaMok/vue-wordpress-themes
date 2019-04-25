@@ -98,17 +98,6 @@ export default {
     },
   },
   render(h, context) {
-    const noPostTag = h(
-      'h1',
-      {
-        class: {
-          hidden: this.posts.length !== 0,
-          'block w-4/5 mx-auto font-display text-center mb-8': true,
-        },
-      },
-      this.noPostsMsg
-    );
-
     let listDisplayClass = 'list-reset flex text-center justify-center';
     listDisplayClass += this.totalPages <= 1 ? ' hidden' : '';
 
@@ -122,7 +111,12 @@ export default {
             key: post.id,
           });
         })}
-        {noPostTag}
+        <h1
+          v-show={this.posts.length === 0}
+          class="block w-4/5 mx-auto font-display text-center mb-8"
+        >
+          {this.noPostsMsg}
+        </h1>
         <div class="pager block w-4/5 mx-auto">
           <ul class={listDisplayClass}>
             <li>

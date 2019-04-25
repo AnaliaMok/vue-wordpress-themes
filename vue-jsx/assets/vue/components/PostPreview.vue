@@ -109,7 +109,9 @@ export default {
             >
               {this.category.name}
             </a>
-            <span class={this.category.link ? 'mx-2' : 'hidden'}>&middot;</span>
+            <span class="mx-2" v-show={this.category.link}>
+              &middot;
+            </span>
             <strong class="font-sans text-base">{this.formattedDate}</strong>
           </p>
           {/* End of Category Link */}
