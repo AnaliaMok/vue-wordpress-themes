@@ -1,6 +1,8 @@
-# Vue Classic
+# Vue JSX
 
-Boilerplate theme integrating Vue with a standard WordPress installation.
+Boilerplate theme for integrating Vue with a standard WordPress installation.
+
+__Provides JSX support__ out of the box.
 
 ## Setup
 * Make sure to use the latest version of node (10.15.0)
