@@ -1,4 +1,7 @@
-<script>
+<script lang="ts">
+import { Vue, Component, Prop } from 'vue-property-decorator';
+import { VNode } from 'vue';
+
 // Page Templates
 import Page from '@/templates/Pages/Page.vue';
 import FrontPage from '@/templates/Pages/FrontPage.vue';
@@ -8,41 +11,36 @@ import Listing from '@/templates/Pages/Listing.vue';
 // Single Templates.
 import Post from '@/templates/Singles/Post.vue';
 
-export default {
-  name: 'App',
-  functional: true,
-  props: {
-    component: String,
-    props: Object,
-    // Future TODO: Find cleaner workaround for component registration.
-    // Might be easier solved in JSX implementation.
-    components: {
-      type: Object,
-      default() {
-        return {
-          Page,
-          FrontPage,
-          Blog,
-          Post,
-          Listing,
-        };
-      },
-    },
-  },
-  render: function(h, context) {
-    let { component, props, components } = context.props;
+interface IComponentsMap {
+  Page: string;
+  FrontPage: string;
+  Blog: string;
+  Post: string;
+  Listing: string;
+  [key: string]: string;
+}
 
+@Component
+export default class App extends Vue {
+  @Prop(String) readonly component!: string;
+  @Prop(Object) readonly props!: object;
+  @Prop({ type: Object, default: { Page, FrontPage, Blog, Post, Listing } })
+  readonly components!: IComponentsMap;
+
+  // functional: true, // TODO: Re-add
+
+  render(h: Function): VNode {
     if (
-      component === undefined ||
-      !Object.keys(components).includes(component)
+      this.component === undefined ||
+      !Object.keys(this.components).includes(this.component)
     ) {
       // FUTURE TODO: Fallback to page markup?
       return h('Layout');
     }
 
-    return h(components[component], {
-      props: { ...props },
+    return h(this.components[this.component], {
+      props: { ...this.props },
     });
-  },
-};
+  }
+}
 </script>

@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import DefaultLayout from './layouts/DefaultLayout.vue';
+import DefaultLayout from './layouts/DefaultLayout';
 import App from './App.vue';
 
 // Make console clean.
@@ -8,14 +8,13 @@ Vue.config.productionTip = false;
 // Register Global Components.
 Vue.component('Layout', DefaultLayout);
 
-let app = document.getElementById('app');
-
 new Vue({
   render: h => {
+    const app: HTMLElement|null = document.getElementById('app');
     return h(App, {
       props: {
-        component: app.dataset.component,
-        props: app.dataset.props ? JSON.parse(app.dataset.props) : null,
+        component: app && app.dataset ? app.dataset.component : null,
+        props: app && app.dataset.props ? JSON.parse(app.dataset.props) : null,
       },
     });
   },
