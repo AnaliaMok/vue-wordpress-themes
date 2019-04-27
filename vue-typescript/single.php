@@ -2,7 +2,7 @@
 /**
  * File: single.php
  *
- * @package Vue_Classic
+ * @package Vue_Typescript
  */
 
 get_header();

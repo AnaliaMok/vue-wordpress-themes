@@ -4,7 +4,7 @@
  *
  * Blog page template.
  *
- * @package Vue_Classic
+ * @package Vue_Typescript
  */
 
 get_header();

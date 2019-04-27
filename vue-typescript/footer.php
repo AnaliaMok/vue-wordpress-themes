@@ -2,7 +2,7 @@
 /**
  * File: footer.php
  *
- * @package Vue_Classic
+ * @package Vue_Typescript
  */
 
 ?>

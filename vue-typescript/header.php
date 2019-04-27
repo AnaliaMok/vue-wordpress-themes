@@ -4,7 +4,7 @@
  *
  * Header Template partial.
  *
- * @package Vue_Classic
+ * @package Vue_Typescript
  */
 
 ?>

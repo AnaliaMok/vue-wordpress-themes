@@ -9,40 +9,41 @@
 	</div>
 </template>
 
-<script>
-import { Placeholders } from '@/helpers/constants.js';
+<script lang="ts">
+import Placeholders from '@/helpers/constants';
 import { Vue, Component, Prop } from 'vue-property-decorator';
 
-export default {
-  props: {
-    banner: Object,
-    title: String,
-    subheading: String,
-  },
-  data() {
-    return {
-      defaultBannerImage: {
-        url: Placeholders.banner,
-        alt: 'Blog Header',
-      },
-    };
-  },
-  computed: {
-    bannerImage() {
-      if (this.banner === null) {
-        return this.defaultBannerImage;
-      }
+// TODO: Move to importable location - WordPress type definitions?.
+interface IMedia {
+  url?: string;
+  alt?: string;
+}
 
-      return {
-        url: this.banner.url || this.defaultBannerImage.url,
-        alt:
-          this.banner.alt.length > 0
-            ? this.banner.alt
-            : this.defaultBannerImage.alt,
-      };
-    },
-  },
-};
+@Component
+export default class PageBanner extends Vue {
+  @Prop(Object) banner!: IMedia;
+  @Prop(String) readonly title!: string;
+  @Prop(String) readonly subheading!: string;
+
+  defaultBannerImage: IMedia = {
+    url: Placeholders.banner,
+    alt: 'Blog Header',
+  };
+
+  get bannerImage() {
+    if (this.banner === null) {
+      return this.defaultBannerImage;
+    }
+
+    return {
+      url: this.banner.url || this.defaultBannerImage.url,
+      alt:
+        this.banner.alt && this.banner.alt.length > 0
+          ? this.banner.alt
+          : this.defaultBannerImage.alt,
+    };
+  }
+}
 </script>
 
 <style scoped>

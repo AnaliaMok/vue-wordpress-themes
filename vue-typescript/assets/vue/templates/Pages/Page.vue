@@ -10,14 +10,14 @@
 import { Vue, Component, Prop } from 'vue-property-decorator';
 import PageBanner from '@/components/PageBanner.vue';
 
-@Component
+@Component({
+  components: {
+    PageBanner,
+  },
+})
 export default class Page extends Vue {
   @Prop(String) readonly title!: string;
   @Prop(String) readonly content!: string;
   @Prop(Object) readonly thumbnail!: object;
-
-  // components: {
-  //   PageBanner,
-  // };
 }
 </script>

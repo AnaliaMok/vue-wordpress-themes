@@ -4,12 +4,12 @@ import { VNode } from 'vue';
 
 // Page Templates
 import Page from '@/templates/Pages/Page.vue';
-import FrontPage from '@/templates/Pages/FrontPage.vue';
-import Blog from '@/templates/Pages/Blog.vue';
-import Listing from '@/templates/Pages/Listing.vue';
+// import FrontPage from '@/templates/Pages/FrontPage.vue';
+// import Blog from '@/templates/Pages/Blog.vue';
+// import Listing from '@/templates/Pages/Listing.vue';
 
 // Single Templates.
-import Post from '@/templates/Singles/Post.vue';
+// import Post from '@/templates/Singles/Post.vue';
 
 interface IComponentsMap {
   Page: string;
@@ -22,9 +22,9 @@ interface IComponentsMap {
 
 @Component
 export default class App extends Vue {
-  @Prop(String) readonly component!: string;
-  @Prop(Object) readonly props!: object;
-  @Prop({ type: Object, default: { Page, FrontPage, Blog, Post, Listing } })
+  @Prop() readonly component!: string;
+  @Prop() readonly props!: object;
+  @Prop({ default: { Page } }) //, FrontPage, Blog, Post, Listing } })
   readonly components!: IComponentsMap;
 
   // functional: true, // TODO: Re-add
