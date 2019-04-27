@@ -1,31 +1,26 @@
 <template>
   <Page :title="title" :content="content" :thumbnail="thumbnail">
-		<Pager resourceType="posts"/>
+		<!-- <Pager resourceType="posts"/> -->
   </Page>
 </template>
 
-<script>
+<script lang="ts">
 import Page from '@/templates/Pages/Page.vue';
-import Pager from '@/components/Pager.vue';
+// import Pager from '@/components/Pager.vue';
+import { Vue, Component, Prop } from 'vue-property-decorator';
+import { WPMedia, WPPost } from '@/wordpressTypes.d.ts';
 
-export default {
+@Component({
   components: {
     Page,
-    Pager,
+    // Pager,
   },
-  props: {
-    title: {
-      type: String,
-      default: 'Welcome to Our Blog',
-    },
-    thumbnail: Object,
-    content: String,
-  },
-  data() {
-    return {
-      posts: [],
-      currentPage: 1,
-    };
-  },
-};
+})
+export default class Blog extends Vue {
+  @Prop({ default: 'Welcome to Our Blog' }) readonly title!: string;
+  @Prop() readonly thumbnail!: WPMedia;
+  @Prop() readonly content!: string;
+
+  posts: WPPost[] = new Array<WPPost>();
+}
 </script>

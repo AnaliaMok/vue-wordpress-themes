@@ -41,31 +41,12 @@
 <script lang="ts">
 import { Component, Prop, Mixins } from 'vue-property-decorator';
 import DateMixin from '@/mixins/DateMixin';
-import { Placeholders } from '@/helpers/constants.js';
-
-// TODO: Move to importable location - WordPress type definitions?.
-interface IMedia {
-  url?: string;
-  alt?: string;
-}
-
-// TODO: Move to importable location.
-// WordPress REST API rich text format.
-interface IRichText {
-  rendered: string;
-}
-
-// TODO: Added extra optional fields
-interface IPostItem {
-  title: IRichText;
-  date: string;
-  featured_media: IMedia;
-  categories?: string[];
-}
+import Placeholders from '@/helpers/constants';
+import { WPMedia, WPRichText, WPPost } from '@/wordpressTypes.d.ts';
 
 @Component
 export default class PostPreview extends Mixins(DateMixin) {
-  @Prop(Object) readonly item!: IPostItem;
+  @Prop() readonly item!: WPPost;
 
   featuredMedia = {
     url: Placeholders.thumbnail,
