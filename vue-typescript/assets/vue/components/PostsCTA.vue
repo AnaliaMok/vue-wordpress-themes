@@ -23,6 +23,7 @@ export default class PostsCTA extends Mixins(DateMixin) {
     alt: 'Blog Thumbnail',
   };
 
+  // Refactor methods?
   getThumbnailUrl(item: WPPost): string {
     if (item.thumbnail) {
       return item.thumbnail.url;

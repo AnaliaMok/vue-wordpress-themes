@@ -26,7 +26,12 @@ export default class Post extends Vue {
   @Prop({ default: { name: 'Unknown', link: window.location.origin } })
   readonly author!: WPAuthor;
 
-  get featuredMedia() {
+  /**
+   * Compute post thumbnail image.
+   *
+   * Uses banner preset placeholder image if no post thumbnail has been supplied.
+   */
+  get featuredMedia(): WPMedia {
     const defaultUrl = Placeholders.banner;
 
     let url = this.thumbnail ? this.thumbnail.url : '';
@@ -38,7 +43,12 @@ export default class Post extends Vue {
     };
   }
 
-  get bannerCaption() {
+  /**
+   * Compute subheading property for PageBanner
+   *
+   * @return string - Formatted PageBanner subheading
+   */
+  get bannerCaption(): string {
     return `Published on ${this.date} by <a href='${this.author.link}'>${this
       .author.name || 'Unknown'}</a>`;
   }

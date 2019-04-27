@@ -22,7 +22,7 @@
       <p class="mt-0 mb-2">
         <a v-if="category.link" :href="category.link">{{ category.name }}</a>
         <span v-if="category.link">&middot;</span>
-        <strong class="font-sans text-base">{{ formattedDate }}</strong>
+        <strong class="font-sans text-base">{{ getFormattedDate(item.date) }}</strong>
       </p>
       <div
         v-html="item.excerpt.rendered"
@@ -60,10 +60,11 @@ export default class PostPreview extends Mixins(DateMixin) {
     this.getCategory();
   }
 
-  get formattedDate() {
-    return this.getFormattedDate(this.item.date);
-  }
-
+  /**
+   * Fetch media item through REST API.
+   *
+   * @return void
+   */
   getFeaturedMedia(): void {
     if (this.item.featured_media === 0) {
       return;
@@ -95,6 +96,11 @@ export default class PostPreview extends Mixins(DateMixin) {
       });
   }
 
+  /**
+   * Fetch category information by ID through the REST API.
+   *
+   * @return void
+   */
   getCategory(): void {
     if (
       this.item.categories === undefined ||

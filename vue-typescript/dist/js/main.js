@@ -2172,6 +2172,7 @@ var PostsCTA = /** @class */ (function (_super) {
         };
         return _this;
     }
+    // Refactor methods?
     PostsCTA.prototype.getThumbnailUrl = function (item) {
         if (item.thumbnail) {
             return item.thumbnail.url;
@@ -2472,6 +2473,11 @@ var Post = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     Object.defineProperty(Post.prototype, "featuredMedia", {
+        /**
+         * Compute post thumbnail image.
+         *
+         * Uses banner preset placeholder image if no post thumbnail has been supplied.
+         */
         get: function () {
             var defaultUrl = _helpers_constants__WEBPACK_IMPORTED_MODULE_1__["default"].banner;
             var url = this.thumbnail ? this.thumbnail.url : '';
@@ -2485,6 +2491,11 @@ var Post = /** @class */ (function (_super) {
         configurable: true
     });
     Object.defineProperty(Post.prototype, "bannerCaption", {
+        /**
+         * Compute subheading property for PageBanner
+         *
+         * @return string - Formatted PageBanner subheading
+         */
         get: function () {
             return "Published on " + this.date + " by <a href='" + this.author.link + "'>" + (this
                 .author.name || 'Unknown') + "</a>";
