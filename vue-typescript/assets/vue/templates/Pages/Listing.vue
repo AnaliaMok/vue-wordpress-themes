@@ -9,23 +9,21 @@
 	</Layout>
 </template>
 
-<script>
+<script lang="ts">
 import Pager from '@/components/Pager.vue';
+import { Vue, Component, Prop } from 'vue-property-decorator';
 
-export default {
+@Component({
   components: {
     Pager,
   },
-  props: {
-    title: String,
-    content: String,
-    params: String,
-    postType: {
-      type: String,
-      default: 'posts',
-    },
-  },
-};
+})
+export default class Listing extends Vue {
+  @Prop(String) readonly title!: string;
+  @Prop(String) readonly content!: string;
+  @Prop(String) readonly params!: string;
+  @Prop({ type: String, default: 'posts' }) readonly postType!: string;
+}
 </script>
 
 <style scoped>

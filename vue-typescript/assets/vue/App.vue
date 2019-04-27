@@ -6,7 +6,7 @@ import { VNode } from 'vue';
 import Page from '@/templates/Pages/Page.vue';
 import FrontPage from '@/templates/Pages/FrontPage.vue';
 import Blog from '@/templates/Pages/Blog.vue';
-// import Listing from '@/templates/Pages/Listing.vue';
+import Listing from '@/templates/Pages/Listing.vue';
 
 // Single Templates.
 import Post from '@/templates/Singles/Post.vue';
@@ -24,7 +24,7 @@ interface IComponentsMap {
 export default class App extends Vue {
   @Prop(String) readonly component!: string;
   @Prop(Object) readonly props!: object;
-  @Prop({ default: () => ({ Page, FrontPage, Blog, Post }) }) //, Post, Listing } })
+  @Prop({ default: () => ({ Page, FrontPage, Blog, Post, Listing }) })
   readonly components!: IComponentsMap;
 
   render(h: Function): VNode {
