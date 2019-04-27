@@ -7,43 +7,40 @@
 	</Layout>
 </template>
 
-<script>
+<script lang="ts">
 import PageBanner from '@/components/PageBanner.vue';
-import { Placeholders } from '@/helpers/constants.js';
+import Placeholders from '@/helpers/constants';
+import { Vue, Component, Prop } from 'vue-property-decorator';
+import { WPMedia, WPPost, WPAuthor } from '@/wordpressTypes.d.ts';
 
-export default {
+@Component({
   components: {
     PageBanner,
   },
-  props: {
-    title: String,
-    content: String,
-    thumbnail: Object,
-    date: String,
-    author: {
-      type: Object,
-      default: {
-        name: 'Unknown',
-        link: window.location.origin,
-      },
-    },
-  },
-  computed: {
-    featuredMedia() {
-      const defaultUrl = Placeholders.banner;
+})
+export default class Post extends Vue {
+  @Prop() readonly title!: string;
+  @Prop() readonly content!: string;
+  @Prop() readonly date!: string;
+  @Prop() readonly thumbnail!: WPMedia;
+  @Prop({ default: { name: 'Unknown', link: window.location.origin } })
+  readonly author!: WPAuthor;
 
-      let url = this.thumbnail ? this.thumbnail.url : '';
-      let alt = this.thumbnail ? this.thumbnail.alt : this.title;
+  get featuredMedia() {
+    const defaultUrl = Placeholders.banner;
 
-      return {
-        url: url || defaultUrl,
-        alt,
-      };
-    },
-    bannerCaption() {
-      return `Published on ${this.date} by <a href='${this.author.link}'>${this
-        .author.name || 'Unknown'}</a>`;
-    },
-  },
-};
+    let url = this.thumbnail ? this.thumbnail.url : '';
+    let alt = this.thumbnail ? this.thumbnail.alt : this.title;
+
+    return {
+      url: url || defaultUrl,
+      alt,
+    };
+  }
+
+  get bannerCaption() {
+    return `Published on ${this.date} by <a href='${this.author.link}'>${this
+      .author.name || 'Unknown'}</a>`;
+  }
+}
 </script>
