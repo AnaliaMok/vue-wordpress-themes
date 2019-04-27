@@ -41,3 +41,13 @@ nav li.current-menu-item a,
 nav li a:hover {
 	@apply bg-blue text-grey-lighter;
 }
+
+.page-banner__content {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+}
+.page-banner__content >>> p a {
+  color: #f8fafc;
+}

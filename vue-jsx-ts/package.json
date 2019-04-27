@@ -18,6 +18,10 @@
     "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
   },
   "devDependencies": {
+    "babel-helper-vue-jsx-merge-props": "^2.0.3",
+    "babel-plugin-syntax-jsx": "^6.18.0",
+    "babel-plugin-transform-vue-jsx": "^3.7.0",
+    "babel-preset-env": "^1.7.0",
     "browser-sync": "^2.26.3",
     "browser-sync-webpack-plugin": "^2.0.1",
     "cross-env": "^5.2.0",
@@ -29,8 +33,6 @@
   },
   "dependencies": {
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
-    "@vue/babel-helper-vue-jsx-merge-props": "^1.0.0-beta.3",
-    "@vue/babel-preset-jsx": "^1.0.0-beta.3",
     "vue": "^2.6.10",
     "vue-property-decorator": "^8.1.0"
   }

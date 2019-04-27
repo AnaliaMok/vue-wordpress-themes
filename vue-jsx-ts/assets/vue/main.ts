@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import DefaultLayout from './layouts/DefaultLayout';
-import App from './App.vue';
+import App from './App';
 
 // Make console clean.
 Vue.config.productionTip = false;

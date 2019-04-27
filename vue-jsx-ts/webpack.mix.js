@@ -11,7 +11,7 @@ mix
   .webpackConfig({
     output: { chunkFilename: 'js/[name].[contenthash].js' },
     resolve: {
-      extensions: ['.js', '.vue'],
+      extensions: ['.ts', '.tsx', '.js', '.vue'],
       alias: {
         vue$: 'vue/dist/vue.runtime.js',
         '@': path.resolve('assets/vue'),

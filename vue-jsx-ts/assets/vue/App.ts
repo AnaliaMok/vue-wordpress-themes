@@ -1,15 +1,14 @@
-<script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator';
 import { VNode } from 'vue';
 
 // Page Templates
-import Page from '@/templates/Pages/Page.vue';
-import FrontPage from '@/templates/Pages/FrontPage.vue';
-import Blog from '@/templates/Pages/Blog.vue';
-import Listing from '@/templates/Pages/Listing.vue';
+import Page from '@/templates/Pages/Page';
+// import FrontPage from '@/templates/Pages/FrontPage.vue';
+// import Blog from '@/templates/Pages/Blog.vue';
+// import Listing from '@/templates/Pages/Listing.vue';
 
 // Single Templates.
-import Post from '@/templates/Singles/Post.vue';
+// import Post from '@/templates/Singles/Post.vue';
 
 interface IComponentsMap {
   Page: string;
@@ -24,7 +23,7 @@ interface IComponentsMap {
 export default class App extends Vue {
   @Prop(String) readonly component!: string;
   @Prop(Object) readonly props!: object;
-  @Prop({ default: () => ({ Page, FrontPage, Blog, Post, Listing }) })
+  @Prop({ default: () => ({ Page }) }) //, FrontPage, Blog, Post, Listing
   readonly components!: IComponentsMap;
 
   render(h: Function): VNode {
@@ -33,4 +32,4 @@ export default class App extends Vue {
     });
   }
 }
-</script>
+
