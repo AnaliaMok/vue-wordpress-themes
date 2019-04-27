@@ -18,9 +18,9 @@ import { WPMedia, WPPost } from '@/wordpressTypes.d.ts';
   },
 })
 export default class FrontPage extends Vue {
-  @Prop() readonly title!: string;
-  @Prop() readonly thumbnail!: WPMedia;
-  @Prop() readonly latestposts!: Array<WPPost>;
+  @Prop(String) readonly title!: string;
+  @Prop(Object) readonly thumbnail!: WPMedia;
+  @Prop(Array) readonly latestposts!: Array<WPPost>;
 }
 </script>
 

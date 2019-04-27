@@ -22,104 +22,125 @@
 	</section>
 </template>
 
-<script>
+<script lang="ts">
 import PostPreview from '@/components/PostPreview.vue';
+import { Vue, Component, Prop, Watch } from 'vue-property-decorator';
+import { WPPost } from '@/wordpressTypes.d.ts';
 
-export default {
+@Component({
   components: {
     PostPreview,
   },
-  props: {
-    resourceType: {
-      type: String,
-      default: 'posts',
-    },
-    params: String,
-  },
-  data() {
-    return {
-      currentPage: 1,
-      totalPages: 1,
-      posts: [],
-      noPostsMsg: 'Searching for posts...',
-    };
-  },
+})
+export default class Page extends Vue {
+  @Prop({ type: String, default: 'posts' }) readonly resourceType!: string;
+  @Prop(String) readonly params!: string;
+
+  currentPage: number = 1;
+  totalPages: number = 1;
+  posts: Array<WPPost> = new Array<WPPost>();
+  noPostsMsg: string = 'Searching for posts...';
+
   created() {
     this.getPosts();
-  },
-  watch: {
-    currentPage: function(oldValue, newValue) {
-      this.getPosts();
-    },
-  },
-  computed: {
-    pagedComponent() {
-      if (this.resourceType === 'posts') {
-        return 'PostPreview';
+  }
+
+  @Watch('currentPage')
+  getCurrentPage(oldValue: number, newValue: number) {
+    this.getPosts();
+  }
+
+  /**
+   * Compute component to render.
+   *
+   * @return string - Registered Component name.
+   */
+  get pagedComponent(): string {
+    if (this.resourceType === 'posts') {
+      return 'PostPreview';
+    }
+    // TODO: Extend this list when necessary.
+    return '';
+  }
+
+  /**
+   * Compute current range of pages to display in paginator.
+   *
+   * Displays a maximum of 3 pages.
+   *
+   * @return Array<number> - Range of page numbers to display.
+   */
+  get pageRange(): Array<number> {
+    let start: number = this.currentPage - 1 > 0 ? this.currentPage - 1 : 1;
+    let end: number = this.currentPage;
+
+    if (this.currentPage === 1 && end + 2 <= this.totalPages) {
+      end += 2;
+    } else {
+      end = end + 1 <= this.totalPages ? end + 1 : this.totalPages;
+
+      if (end === this.totalPages && this.totalPages - 2 > 0) {
+        start = this.totalPages - 2;
       }
-      // TODO: Extend this list when necessary.
-    },
-    pageRange() {
-      // Display range of 3 pages.
-      let start = this.currentPage - 1 > 0 ? this.currentPage - 1 : 1;
-      let end = this.currentPage;
+    }
 
-      if (this.currentPage === 1 && end + 2 <= this.totalPages) {
-        end += 2;
-      } else {
-        end = end + 1 <= this.totalPages ? end + 1 : this.totalPages;
+    let range: Array<number> = new Array<number>();
+    for (var i = start; i <= end; i++) {
+      range.push(i);
+    }
 
-        if (end === this.totalPages && this.totalPages - 2 > 0) {
-          start = this.totalPages - 2;
+    return range;
+  }
+
+  /**
+   * Re-fetch wordpress posts using current page number and post type.
+   *
+   * @return void
+   */
+  getPosts(): void {
+    let resourceUrl = `${window.location.origin}/wp-json/wp/v2/${
+      this.resourceType
+    }?per_page=9&page=${this.currentPage}`;
+
+    if (this.params) {
+      resourceUrl += `&${this.params}`;
+    }
+
+    // Reset while loading.
+    this.noPostsMsg = 'Loading...';
+    this.posts = [];
+
+    fetch(resourceUrl, { credentials: 'same-origin' })
+      .then(res => {
+        this.totalPages = parseInt(<string>res.headers.get('X-WP-TotalPages'));
+        return res.json();
+      })
+      .then(data => {
+        if (data) {
+          this.posts = data;
+        } else {
+          this.noPostsMsg = 'No Posts Found';
         }
-      }
+      });
+  }
 
-      let range = [];
-      for (var i = start; i <= end; i++) {
-        range.push(i);
-      }
-
-      return range;
-    },
-  },
-  methods: {
-    getPosts() {
-      let resourceUrl = `${window.location.origin}/wp-json/wp/v2/${
-        this.resourceType
-      }?per_page=9&page=${this.currentPage}`;
-
-      if (this.params) {
-        resourceUrl += `&${this.params}`;
-      }
-
-      // Reset while loading.
-      this.noPostsMsg = 'Loading...';
-      this.posts = [];
-
-      fetch(resourceUrl, { credentials: 'same-origin' })
-        .then(res => {
-          this.totalPages = parseInt(res.headers.get('X-WP-TotalPages'));
-          return res.json();
-        })
-        .then(data => {
-          if (data) {
-            this.posts = data;
-          } else {
-            this.noPostsMsg = 'No Posts Found';
-          }
-        });
-    },
-    getPage(pageNum) {
-      if (pageNum > this.totalPages) {
-        // Reset to first page.
-        this.currentPage = 1;
-      } else if (pageNum < 1) {
-        // Loop backwards.
-        this.currentPage = this.totalPages;
-      } else {
-        this.currentPage = pageNum;
-      }
-    },
-  },
-};
+  /**
+   * Triggers post refetch by updating currentPage.
+   * Pre-condition: pageNum is always within range.
+   *
+   * @param number pageNum - Page to retrieve.
+   * @return void
+   */
+  getPage(pageNum: number): void {
+    if (pageNum > this.totalPages) {
+      // Reset to first page.
+      this.currentPage = 1;
+    } else if (pageNum < 1) {
+      // Loop backwards.
+      this.currentPage = this.totalPages;
+    } else {
+      this.currentPage = pageNum;
+    }
+  }
+}
 </script>

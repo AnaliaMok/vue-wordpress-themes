@@ -9,6 +9,7 @@
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator';
 import PageBanner from '@/components/PageBanner.vue';
+import { WPMedia } from '@/wordpressTypes.d.ts';
 
 @Component({
   components: {
@@ -16,8 +17,8 @@ import PageBanner from '@/components/PageBanner.vue';
   },
 })
 export default class Page extends Vue {
-  @Prop() readonly title!: string;
-  @Prop() readonly content!: string;
-  @Prop() readonly thumbnail!: object;
+  @Prop(String) readonly title!: string;
+  @Prop(String) readonly content!: string;
+  @Prop(Object) readonly thumbnail!: WPMedia;
 }
 </script>

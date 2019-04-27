@@ -19,10 +19,10 @@ import { WPMedia, WPPost, WPAuthor } from '@/wordpressTypes.d.ts';
   },
 })
 export default class Post extends Vue {
-  @Prop() readonly title!: string;
-  @Prop() readonly content!: string;
-  @Prop() readonly date!: string;
-  @Prop() readonly thumbnail!: WPMedia;
+  @Prop(String) readonly title!: string;
+  @Prop(String) readonly content!: string;
+  @Prop(String) readonly date!: string;
+  @Prop(Object) readonly thumbnail!: WPMedia;
   @Prop({ default: { name: 'Unknown', link: window.location.origin } })
   readonly author!: WPAuthor;
 

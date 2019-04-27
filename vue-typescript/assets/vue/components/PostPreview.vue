@@ -46,7 +46,7 @@ import { WPMedia, WPRichText, WPPost } from '@/wordpressTypes.d.ts';
 
 @Component
 export default class PostPreview extends Mixins(DateMixin) {
-  @Prop() readonly item!: WPPost;
+  @Prop(Object) readonly item!: WPPost;
 
   featuredMedia = {
     url: Placeholders.thumbnail,

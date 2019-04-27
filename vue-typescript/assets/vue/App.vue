@@ -22,8 +22,8 @@ interface IComponentsMap {
 
 @Component
 export default class App extends Vue {
-  @Prop() readonly component!: string;
-  @Prop() readonly props!: object;
+  @Prop(String) readonly component!: string;
+  @Prop(Object) readonly props!: object;
   @Prop({ default: () => ({ Page, FrontPage, Blog, Post }) }) //, Post, Listing } })
   readonly components!: IComponentsMap;
 
