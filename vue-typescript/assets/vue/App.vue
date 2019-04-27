@@ -30,14 +30,6 @@ export default class App extends Vue {
   // functional: true, // TODO: Re-add
 
   render(h: Function): VNode {
-    if (
-      this.component === undefined ||
-      !Object.keys(this.components).includes(this.component)
-    ) {
-      // FUTURE TODO: Fallback to page markup?
-      return h('Layout');
-    }
-
     return h(this.components[this.component], {
       props: { ...this.props },
     });

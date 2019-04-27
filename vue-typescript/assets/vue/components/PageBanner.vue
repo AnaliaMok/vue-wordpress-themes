@@ -11,6 +11,7 @@
 
 <script>
 import { Placeholders } from '@/helpers/constants.js';
+import { Vue, Component, Prop } from 'vue-property-decorator';
 
 export default {
   props: {

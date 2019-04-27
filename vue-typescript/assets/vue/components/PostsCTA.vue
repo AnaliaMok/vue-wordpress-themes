@@ -8,40 +8,56 @@
 	</section>
 </template>
 
-<script>
-import { DateMixin } from '@/mixins/DateMixin.js';
+<script lang="ts">
+import DateMixin from '@/mixins/DateMixin';
 import { Placeholders } from '@/helpers/constants.js';
+import { Component, Prop, Mixins } from 'vue-property-decorator';
 
-export default {
-  mixins: [DateMixin],
-  props: {
-    items: Array,
-  },
-  data() {
-    return {
-      defaultThumbnail: {
-        url: Placeholders.thumbnail,
-        alt: 'Blog Thumbnail',
-      },
-    };
-  },
-  methods: {
-    getThumbnailUrl(item) {
-      if (item.thumbnail) {
-        return item.thumbnail.url;
-      } else {
-        return this.defaultThumbnail.url;
-      }
-    },
-    getThumbnailAlt(item) {
-      if (item.thumbnail) {
-        return item.thumbnail.alt;
-      } else {
-        return this.defaultThumbnail.alt;
-      }
-    },
-  },
-};
+// TODO: Move to importable location - WordPress type definitions?.
+interface IMedia {
+  url?: string;
+  alt?: string;
+}
+
+// TODO: Move to importable location.
+// WordPress REST API rich text format.
+interface IRichText {
+  rendered: string;
+}
+
+// TODO: Added extra optional fields
+interface IPostItem {
+  title: IRichText;
+  date: string;
+  thumbnail: IMedia;
+  categories?: string[];
+}
+
+@Component
+export default class PostsCTA extends Mixins(DateMixin) {
+  @Prop(Array) readonly items!: Array<IPostItem>;
+
+  defaultThumbnail: IMedia = {
+    url: Placeholders.thumbnail,
+    alt: 'Blog Thumbnail',
+  };
+
+  getThumbnailUrl(item: IPostItem): string {
+    if (item.thumbnail) {
+      return item.thumbnail.url;
+    } else {
+      return this.defaultThumbnail.url;
+    }
+  }
+
+  getThumbnailAlt(item: IPostItem): string {
+    if (item.thumbnail) {
+      return item.thumbnail.alt;
+    } else {
+      return this.defaultThumbnail.alt;
+    }
+  }
+}
 </script>
 
 <style scoped>

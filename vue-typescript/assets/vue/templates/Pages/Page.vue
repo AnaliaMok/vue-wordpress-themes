@@ -6,18 +6,18 @@
 	</Layout>
 </template>
 
-<script>
+<script lang="ts">
+import { Vue, Component, Prop } from 'vue-property-decorator';
 import PageBanner from '@/components/PageBanner.vue';
 
-export default {
-  name: 'Page',
-  components: {
-    PageBanner,
-  },
-  props: {
-    title: String,
-    content: String,
-    thumbnail: Object,
-  },
-};
+@Component
+export default class Page extends Vue {
+  @Prop(String) readonly title!: string;
+  @Prop(String) readonly content!: string;
+  @Prop(Object) readonly thumbnail!: object;
+
+  // components: {
+  //   PageBanner,
+  // };
+}
 </script>
