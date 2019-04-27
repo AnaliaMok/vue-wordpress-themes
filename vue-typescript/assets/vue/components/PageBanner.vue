@@ -12,20 +12,15 @@
 <script lang="ts">
 import Placeholders from '@/helpers/constants';
 import { Vue, Component, Prop } from 'vue-property-decorator';
-
-// TODO: Move to importable location - WordPress type definitions?.
-interface IMedia {
-  url?: string;
-  alt?: string;
-}
+import { WPMedia } from '@/wordpressTypes.d.ts';
 
 @Component
 export default class PageBanner extends Vue {
-  @Prop(Object) banner!: IMedia;
+  @Prop(Object) banner!: WPMedia;
   @Prop(String) readonly title!: string;
   @Prop(String) readonly subheading!: string;
 
-  defaultBannerImage: IMedia = {
+  defaultBannerImage: WPMedia = {
     url: Placeholders.banner,
     alt: 'Blog Header',
   };

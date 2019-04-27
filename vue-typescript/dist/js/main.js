@@ -1604,7 +1604,7 @@ var App = /** @class */ (function (_super) {
         Object(vue_property_decorator__WEBPACK_IMPORTED_MODULE_0__["Prop"])()
     ], App.prototype, "props", void 0);
     __decorate([
-        Object(vue_property_decorator__WEBPACK_IMPORTED_MODULE_0__["Prop"])({ default: { Page: _templates_Pages_Page_vue__WEBPACK_IMPORTED_MODULE_1__["default"] } }) //, FrontPage, Blog, Post, Listing } })
+        Object(vue_property_decorator__WEBPACK_IMPORTED_MODULE_0__["Prop"])({ default: function () { return ({ Page: _templates_Pages_Page_vue__WEBPACK_IMPORTED_MODULE_1__["default"] }); } }) //, FrontPage, Blog, Post, Listing } })
     ], App.prototype, "components", void 0);
     App = __decorate([
         vue_property_decorator__WEBPACK_IMPORTED_MODULE_0__["Component"]
@@ -1775,13 +1775,13 @@ var Page = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     __decorate([
-        Object(vue_property_decorator__WEBPACK_IMPORTED_MODULE_0__["Prop"])(String)
+        Object(vue_property_decorator__WEBPACK_IMPORTED_MODULE_0__["Prop"])()
     ], Page.prototype, "title", void 0);
     __decorate([
-        Object(vue_property_decorator__WEBPACK_IMPORTED_MODULE_0__["Prop"])(String)
+        Object(vue_property_decorator__WEBPACK_IMPORTED_MODULE_0__["Prop"])()
     ], Page.prototype, "content", void 0);
     __decorate([
-        Object(vue_property_decorator__WEBPACK_IMPORTED_MODULE_0__["Prop"])(Object)
+        Object(vue_property_decorator__WEBPACK_IMPORTED_MODULE_0__["Prop"])()
     ], Page.prototype, "thumbnail", void 0);
     Page = __decorate([
         Object(vue_property_decorator__WEBPACK_IMPORTED_MODULE_0__["Component"])({

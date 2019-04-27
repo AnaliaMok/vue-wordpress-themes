@@ -16,8 +16,8 @@ import PageBanner from '@/components/PageBanner.vue';
   },
 })
 export default class Page extends Vue {
-  @Prop(String) readonly title!: string;
-  @Prop(String) readonly content!: string;
-  @Prop(Object) readonly thumbnail!: object;
+  @Prop() readonly title!: string;
+  @Prop() readonly content!: string;
+  @Prop() readonly thumbnail!: object;
 }
 </script>
