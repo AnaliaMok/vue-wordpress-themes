@@ -8,6 +8,7 @@ __NOTE__: All themes are currently tested and developed for the Classic Editor.
 * `vue-jsx` - __[STABLE]__ Theme with JSX render support enabled.
 * `vue-typescript` - __[STABLE]__ Theme with Typescript support enabled.
 * `vue-jsx-ts` - __[IN PROGRESS]__ The happy marriage of Typescript and JSX.
+	* [ ] __TODO__ Need to attempt to switch to a vue-cli project or simply install and configure [vue-tsx-support](https://www.npmjs.com/package/vue-tsx-support#install-and-enable)
 * More variants to come
 
 ## Common Technologies
