@@ -5,9 +5,6 @@ import App from './App';
 // Make console clean.
 Vue.config.productionTip = false;
 
-// Register Global Components.
-Vue.component('Layout', DefaultLayout);
-
 new Vue({
   render: h => {
     const app: HTMLElement|null = document.getElementById('app');

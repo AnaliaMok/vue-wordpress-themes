@@ -1,5 +1,5 @@
 import { Vue, Component, Prop } from 'vue-property-decorator';
-import { VNode } from 'vue';
+import { VNode, CreateElement } from 'vue';
 
 // Page Templates
 import Page from '@/templates/Pages/Page';
@@ -12,10 +12,10 @@ import Page from '@/templates/Pages/Page';
 
 interface IComponentsMap {
   Page: string;
-  FrontPage: string;
-  Blog: string;
-  Post: string;
-  Listing: string;
+  // FrontPage: string;
+  // Blog: string;
+  // Post: string;
+  // Listing: string;
   [key: string]: string;
 }
 
@@ -26,7 +26,9 @@ export default class App extends Vue {
   @Prop({ default: () => ({ Page }) }) //, FrontPage, Blog, Post, Listing
   readonly components!: IComponentsMap;
 
-  render(h: Function): VNode {
+  // components:IComponentsMap = { Page: Page };
+
+  render(h: any): VNode {
     return h(this.components[this.component], {
       props: { ...this.props },
     });
