@@ -13486,8 +13486,8 @@ module.exports = g;
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\dev\vue-wordpress\wordpress\wp-content\themes\vue-jsx-ts\assets\vue\main.ts */"./assets/vue/main.ts");
-module.exports = __webpack_require__(/*! C:\dev\vue-wordpress\wordpress\wp-content\themes\vue-jsx-ts\assets\css\styles.css */"./assets/css/styles.css");
+__webpack_require__(/*! c:\dev\vue-wordpress\wordpress\wp-content\themes\vue-jsx-ts\assets\vue\main.ts */"./assets/vue/main.ts");
+module.exports = __webpack_require__(/*! c:\dev\vue-wordpress\wordpress\wp-content\themes\vue-jsx-ts\assets\css\styles.css */"./assets/css/styles.css");
 
 
 /***/ })
