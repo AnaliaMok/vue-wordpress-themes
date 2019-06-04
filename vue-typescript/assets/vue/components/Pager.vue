@@ -94,34 +94,33 @@ export default class Page extends Vue {
 
   /**
    * Re-fetch wordpress posts using current page number and post type.
-   *
-   * @return void
    */
-  getPosts(): void {
+  protected async getPosts() {
     let resourceUrl = `${window.location.origin}/wp-json/wp/v2/${
       this.resourceType
-    }?per_page=9&page=${this.currentPage}`;
-
-    if (this.params) {
-      resourceUrl += `&${this.params}`;
-    }
+    }?per_page=9&page=${this.currentPage}${
+      this.params ? `&${this.params}` : ''
+    }`;
 
     // Reset while loading.
     this.noPostsMsg = 'Loading...';
     this.posts = [];
 
-    fetch(resourceUrl, { credentials: 'same-origin' })
-      .then(res => {
-        this.totalPages = parseInt(<string>res.headers.get('X-WP-TotalPages'));
-        return res.json();
-      })
-      .then(data => {
-        if (data) {
-          this.posts = data;
-        } else {
-          this.noPostsMsg = 'No Posts Found';
-        }
-      });
+    try {
+      const response = await fetch(resourceUrl, { credentials: 'same-origin' });
+      this.totalPages = parseInt(<string>(
+        response.headers.get('X-WP-TotalPages')
+      ));
+      const data = await response.json();
+      if (data) {
+        this.posts = data;
+      } else {
+        this.noPostsMsg = 'No Posts Found';
+      }
+    } catch (e) {
+      // FUTURE TODO: Handle better.
+      this.noPostsMsg = 'No Posts Found';
+    }
   }
 
   /**
