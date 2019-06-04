@@ -1,5 +1,4 @@
 import Vue from 'vue';
-import DefaultLayout from './layouts/DefaultLayout';
 import App from './App';
 
 // Make console clean.

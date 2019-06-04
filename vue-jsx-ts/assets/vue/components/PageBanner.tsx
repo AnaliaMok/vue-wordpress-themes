@@ -1,10 +1,10 @@
 import Placeholders from '@/helpers/constants';
 import { Vue, Component, Prop } from 'vue-property-decorator';
-import { WPMedia } from '@/wordpressTypes.d.ts';
+import { WPMedia } from '@/wordpress-types.d.ts';
 
 @Component
 export default class PageBanner extends Vue {
-  @Prop({ type: Object as () => WPMedia }) banner!: WPMedia;
+  @Prop(Object) banner!: WPMedia;
   @Prop(String) readonly title!: string;
   @Prop(String) readonly subheading!: string;
 

@@ -19,6 +19,7 @@
 			"dom.iterable"
 		]
 	},
+	// "typesRoot": ["./node_modules/@types", "./assets/vue"],
 	"exclude": ["node_modules"],
 	"include": [
 		"node_modules/vue-tsx-support/enable-check.d.ts",

@@ -3,7 +3,7 @@ import { VNode, CreateElement } from 'vue';
 
 // Page Templates
 import Page from '@/templates/Pages/Page';
-// import FrontPage from '@/templates/Pages/FrontPage.vue';
+import FrontPage from '@/templates/Pages/FrontPage';
 // import Blog from '@/templates/Pages/Blog.vue';
 // import Listing from '@/templates/Pages/Listing.vue';
 
@@ -12,7 +12,7 @@ import Page from '@/templates/Pages/Page';
 
 interface IComponentsMap {
   Page: string;
-  // FrontPage: string;
+  FrontPage: string;
   // Blog: string;
   // Post: string;
   // Listing: string;
@@ -23,7 +23,7 @@ interface IComponentsMap {
 export default class App extends Vue {
   @Prop(String) readonly component!: string;
   @Prop(Object) readonly props!: object;
-  @Prop({ default: () => ({ Page }) }) //, FrontPage, Blog, Post, Listing
+  @Prop({ default: () => ({ Page, FrontPage }) }) //, FrontPage, Blog, Post, Listing
   readonly components!: IComponentsMap;
 
   // components:IComponentsMap = { Page: Page };

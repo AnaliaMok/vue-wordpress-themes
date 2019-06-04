@@ -3,19 +3,22 @@
   "version": "1.0.0",
   "private": true,
   "description": "Vue-based WordPress theme",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/AnaliaMok/vue-wordpress-themes/tree/master/vue-classic"
-  },
   "author": "Analia Mok",
-  "license": "ISC",
   "scripts": {
     "dev": "npm run development",
     "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-    "watch": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
     "hot": "cross-env NODE_ENV=development webpack-dev-server --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
     "prod": "npm run production",
-    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "watch": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+  },
+  "dependencies": {
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@types/node": "^12.0.0",
+    "@types/webpack-env": "^1.13.9",
+    "vue": "^2.6.10",
+    "vue-property-decorator": "^8.1.0",
+    "vue-tsx-support": "^2.3.0"
   },
   "devDependencies": {
     "babel-helper-vue-jsx-merge-props": "^2.0.3",
@@ -29,14 +32,13 @@
     "tailwindcss": ">=0.6.5",
     "ts-loader": "^5.4.3",
     "typescript": "^3.4.5",
+    "vue-cli-plugin-tsx-support": "^0.4.0",
+    "vue-jsx-hot-loader": "^1.4.0",
     "vue-template-compiler": "^2.6.10"
   },
-  "dependencies": {
-    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
-    "@types/node": "^12.0.0",
-    "@types/webpack-env": "^1.13.9",
-    "vue": "^2.6.10",
-    "vue-property-decorator": "^8.1.0",
-    "vue-tsx-support": "^2.3.0"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AnaliaMok/vue-wordpress-themes/tree/master/vue-classic"
   }
 }
