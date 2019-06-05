@@ -1,0 +1,14 @@
+{
+	"compilerOptions": {
+		"target": "es5",
+		"strict": true,
+		"module": "es2015",
+		"lib": ["es2015", "dom", "dom.iterable"],
+		"moduleResolution": "node",
+		"experimentalDecorators": true
+	},
+	"exclude": ["node_modules"],
+	"include": [
+		"assets/vue/**/*"
+	]
+}
