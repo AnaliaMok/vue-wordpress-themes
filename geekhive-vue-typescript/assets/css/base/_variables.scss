@@ -1,0 +1,62 @@
+
+/// Layout.
+$sm: '576px';
+$md: '768px';
+$lg: '992px';
+$xl: '1200px';
+
+/// Typography.
+$font-sans: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+$font-display: 'Josefin Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+// Font Weights.
+$fw-normal: 400;
+$fw-medium: 500;
+$fw-semibold: 600;
+$fw-bold: 700;
+
+// Line height
+$leading-tight: .25;
+$leading-normal: 1.5;
+$leading-loose: 2;
+
+/// Colors.
+
+// Gray-scale
+$black: #22292f;
+$white: #ffffff;
+$gray-900: #3d4852;
+$gray-800: #606f7b;
+$gray-700: #8795a1;
+$gray: #b8c2cc;
+$gray-300: #dae1e7;
+$gray-200: #f1f5f8;
+$gray-100: #f8fafc;
+
+// Accent Colors.
+$blue-900: #12283a;
+$blue-800: #1c3d5a;
+$blue-700: #2779bd;
+$blue: #3490dc;
+$blue-300: #6cb2eb;
+$blue-200: #bcdefa;
+$blue-100: #eff8ff;
+
+$indigo-900: #191e38;
+$indigo-800: #2f365f;
+$indigo-700: #5661b3;
+$indigo: #6574cd;
+$indigo-300: #7886d7;
+$indigo-200: #b2b7ff;
+$indigo-100: #e6e8ff;
+
+$purple-900: #21183c;
+$purple-800: #382b5f;
+$purple-700: #794acf;
+$purple: #9561e2;
+$purple-300: #a779e9;
+$purple-200: #d6bbfc;
+$purple-100: #f3ebff;
+
+/// Box Shadows.
+$box-shadow-default: '0 2px 4px 0 rgba(0,0,0,0.10)';

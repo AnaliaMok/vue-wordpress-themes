@@ -1,9 +1,9 @@
 <template functional>
-	<div class="img-wrapper relative md:w-4/5 mx-auto">
-		<img :src="props.banner.url" :alt="props.banner.alt" class="block w-full">
-		<div class="absolute pin bg-grey-darkest opacity-50"></div>
-    <div class="content inline-block absolute z-10 text-grey-lightest text-center px-4 lg:px-0 w-5/6 lg:w-3/5">
-      <h1 class="font-display text-xl md:text-4xl mb-2">{{ props.title }}</h1>
+	<div class="img-wrapper">
+		<img :src="props.banner.url" :alt="props.banner.alt">
+		<div class="overlay pin"></div>
+    <div class="content">
+      <h1>{{ props.title }}</h1>
       <p v-if="props.subheading" v-html="props.subheading"></p>
     </div>
 	</div>
@@ -41,14 +41,57 @@ export default class PageBanner extends Vue {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import '~/base/_variables.scss';
+
+.img-wrapper {
+  position: relative;
+  margin: 0 auto;
+
+  @media (min-width: $md) {
+    width: 80%;
+  }
+
+  img {
+    display: block;
+  }
+}
+
+.overlay {
+  position: absolute;
+  background-color: $gray-900;
+  opacity: 0.5;
+}
+
 .content {
+  display: inline-block;
+  position: absolute;
+  padding: 0 1rem;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   text-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
-}
-.content >>> p a {
-  color: #f8fafc;
+  z-index: 10;
+  width: calc(5 / 6 * 100%);
+  color: $gray-100;
+  text-align: center;
+
+  @media (min-width: $lg) {
+    padding: 0;
+    width: calc(3 / 5 * 100%);
+  }
+
+  h1 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+
+    @media (min-width: $lg) {
+      font-size: 2.25rem;
+    }
+  }
+
+  & >>> p a {
+    color: $white;
+  }
 }
 </style>

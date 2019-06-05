@@ -17,6 +17,7 @@ define( 'ASSET_DIR', THEME_URI . '/assets/img/' );
  */
 function vuetypescript_styles() {
 	wp_enqueue_style( 'vuetypescript-styles', THEME_URI . '/dist/css/styles.min.css', array(), date( 'H:i:s' ) );
+	wp_enqueue_style( 'vuetypescript-stylesv2', THEME_URI . '/dist/css/main.min.css', array(), date( 'H:i:s' ) );
 
 	if ( ! is_404() ) {
 		wp_enqueue_script( 'vuetypescript-scripts', THEME_URI . '/dist/js/main.js', array(), date( 'H:i:s' ), true );

@@ -25,6 +25,15 @@ mix
       alias: {
         vue$: 'vue/dist/vue.runtime.js',
         '@': path.resolve('assets/vue'),
+        '~': path.resolve('assets/css'),
       },
     },
   });
+
+// Note: Autoprefixer enabled by default.
+mix
+  .sass('./assets/css/main.scss', 'dist/css')
+  .options({
+    postCss: [...(process.env.NODE_ENV === 'production' ? [purgecss] : [])],
+  })
+  .minify('dist/css/main.css');
